@@ -27,7 +27,7 @@ export const metadata = {
 const DRAWER_WIDTH = 240
 
 const LINKS = [
-    { text: 'Main', href: '/', icon: AudiotrackIcon },
+    { text: 'Once upon a time...', href: '/', icon: AudiotrackIcon },
     // { text: 'Starred', href: '/starred', icon: StarIcon },
     // { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
 ]
@@ -57,7 +57,7 @@ export default function RootLayout({
                                 }}
                             />
                             <Typography variant="h6" color="text.primary">
-                                AI Audio App by visiodeibc
+                                TB Neighbors
                             </Typography>
                         </Toolbar>
                     </AppBar>
