@@ -79,8 +79,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## TODO
 
-1. [ ]Hook up gemini for story progression
-2. [ ]Put general desciption/purpose on the landing page
-3. [ ]change logo
-4. [ ]change title
-5. [ ]change font
+1. [ ] Hook up gemini for story progression
+2. [ ] Put general desciption/purpose on the landing page
+3. [ ] change logo
+4. [ ] change title
+5. [ ] change font
