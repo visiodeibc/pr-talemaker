@@ -5,9 +5,8 @@ import Box from "@mui/material/Box";
 import { Button, CircularProgress, TextField } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
+import axios from "axios";
 import WaveSurfer from "wavesurfer.js";
-import toWav from "audiobuffer-to-wav";
-import * as sdk from "microsoft-cognitiveservices-speech-sdk";
 
 export default function HomePage() {
   const waveformRef = useRef(null);
@@ -23,65 +22,52 @@ export default function HomePage() {
     null
   );
 
-  const readFileAsArrayBuffer = (file: Blob): Promise<ArrayBuffer> => {
+  const audioBlobToBase64 = (blob: Blob) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = () => {
-        if (reader.result instanceof ArrayBuffer) {
-          resolve(reader.result);
-        } else {
-          reject(new Error("Failed to read file as ArrayBuffer."));
-        }
+      reader.onloadend = () => {
+        const arrayBuffer = reader.result || new ArrayBuffer(0);
+        const base64Audio = btoa(
+          new Uint8Array(arrayBuffer as ArrayBufferLike).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            ""
+          )
+        );
+        resolve(base64Audio);
       };
-      reader.onerror = () => {
-        reject(new Error("Error reading file as ArrayBuffer."));
-      };
-      reader.readAsArrayBuffer(file);
+      reader.onerror = reject;
+      reader.readAsArrayBuffer(blob);
     });
   };
 
   const transcribe = async () => {
     if (audioFile) {
       setTranscribing(true);
-      const arrayBuffer = await readFileAsArrayBuffer(audioFile); //reader.result as ArrayBuffer
-      const audioContext = new AudioContext();
-
-      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-      const speechConfig = sdk.SpeechConfig.fromSubscription(
-        process.env.AZURE_KEY ?? "",
-        process.env.AZURE_REGION ?? ""
-      );
-      speechConfig.speechRecognitionLanguage = "en-US";
-      const wav = toWav(audioBuffer);
-      const audioConfig = sdk.AudioConfig.fromWavFileInput(Buffer.from(wav));
-      const speechRecognizer = new sdk.SpeechRecognizer(
-        speechConfig,
-        audioConfig
-      );
-      await speechRecognizer.recognizeOnceAsync((result) => {
-        switch (result.reason) {
-          case sdk.ResultReason.RecognizedSpeech:
-            setTranscription(result.text);
-            console.log(`RECOGNIZED: Text=${result.text}`);
-            break;
-          case sdk.ResultReason.NoMatch:
-            console.log("NOMATCH: Speech could not be recognized.");
-            break;
-          case sdk.ResultReason.Canceled:
-            const cancellation = sdk.CancellationDetails.fromResult(result);
-            console.log(`CANCELED: Reason=${cancellation.reason}`);
-            if (cancellation.reason == sdk.CancellationReason.Error) {
-              console.log(
-                `CANCELED: ErrorCode=${cancellation.ErrorCode}\n`,
-                `CANCELED: ErrorDetails=${cancellation.errorDetails}\n`,
-                "CANCELED: Did you set the speech resource key and region values?"
-              );
-            }
-            break;
+      const base64Audio = await audioBlobToBase64(audioFile);
+      const response = await axios.post(
+        `https://speech.googleapis.com/v1/speech:recognize?key=${process.env.GCP_KEY}`,
+        {
+          config: {
+            encoding: "WEBM_OPUS",
+            languageCode: "en-US",
+            enableWordTimeOffsets: false,
+          },
+          audio: {
+            content: base64Audio,
+          },
         }
-        setTranscribing(false);
-        speechRecognizer.close();
-      });
+      );
+
+      if (response.data.results && response.data.results.length > 0) {
+        setTranscription(response.data.results[0].alternatives[0].transcript);
+      } else {
+        console.log(
+          "No transcription results in the API response:",
+          response.data
+        );
+        setTranscription("No transcription available");
+      }
+      setTranscribing(false);
     }
   };
 
