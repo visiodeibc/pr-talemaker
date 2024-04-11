@@ -5,9 +5,9 @@ import Box from "@mui/material/Box";
 import { Button, CircularProgress, TextField } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
-import axios from "axios";
 import WaveSurfer from "wavesurfer.js";
 import { transcribeSpeech } from "@/service/serviceGoogle";
+import { audioBlobToBase64 } from "@/util";
 
 export default function HomePage() {
   const waveformRef = useRef(null);
@@ -23,37 +23,23 @@ export default function HomePage() {
     null
   );
 
-  const audioBlobToBase64 = (blob: Blob) => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const arrayBuffer = reader.result || new ArrayBuffer(0);
-        const base64Audio = btoa(
-          new Uint8Array(arrayBuffer as ArrayBufferLike).reduce(
-            (data, byte) => data + String.fromCharCode(byte),
-            ""
-          )
-        );
-        resolve(base64Audio);
-      };
-      reader.onerror = reject;
-      reader.readAsArrayBuffer(blob);
-    });
-  };
-
   const transcribe = async () => {
     if (audioFile) {
       setTranscribing(true);
       const base64Audio = await audioBlobToBase64(audioFile);
-      const result = await transcribeSpeech(base64Audio);
-
-      if (result) {
-        setTranscription(result);
-      } else {
-        console.log("No transcription results in the API response:");
-        setTranscription("No transcription available");
+      try {
+        const result = await transcribeSpeech(base64Audio);
+        if (result) {
+          setTranscription(result);
+        } else {
+          console.log("No transcription results in the API response:");
+          setTranscription("No transcription available");
+        }
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setTranscribing(false);
       }
-      setTranscribing(false);
     }
   };
 
