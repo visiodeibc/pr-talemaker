@@ -7,6 +7,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import axios from "axios";
 import WaveSurfer from "wavesurfer.js";
+import { transcribeSpeech } from "@/service/serviceGoogle";
 
 export default function HomePage() {
   const waveformRef = useRef(null);
@@ -44,27 +45,12 @@ export default function HomePage() {
     if (audioFile) {
       setTranscribing(true);
       const base64Audio = await audioBlobToBase64(audioFile);
-      const response = await axios.post(
-        `https://speech.googleapis.com/v1/speech:recognize?key=${process.env.GCP_KEY}`,
-        {
-          config: {
-            encoding: "WEBM_OPUS",
-            languageCode: "en-US",
-            enableWordTimeOffsets: false,
-          },
-          audio: {
-            content: base64Audio,
-          },
-        }
-      );
+      const result = await transcribeSpeech(base64Audio);
 
-      if (response.data.results && response.data.results.length > 0) {
-        setTranscription(response.data.results[0].alternatives[0].transcript);
+      if (result) {
+        setTranscription(result);
       } else {
-        console.log(
-          "No transcription results in the API response:",
-          response.data
-        );
+        console.log("No transcription results in the API response:");
         setTranscription("No transcription available");
       }
       setTranscribing(false);
