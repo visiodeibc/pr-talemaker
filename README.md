@@ -76,3 +76,11 @@ To learn more about Next.js, take a look at the following resources:
 - [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## TODO
+
+1. [ ]Hook up gemini for story progression
+2. [ ]Put general desciption/purpose on the landing page
+3. [ ]change logo
+4. [ ]change title
+5. [ ]change font
