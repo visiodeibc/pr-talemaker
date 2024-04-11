@@ -61,7 +61,7 @@ export default function RootLayout({
               </Typography>
             </Toolbar>
           </AppBar>
-          <Drawer
+          {/* <Drawer
             sx={{
               width: DRAWER_WIDTH,
               flexShrink: 0,
@@ -102,13 +102,13 @@ export default function RootLayout({
                 </ListItem>
               ))}
             </List>
-          </Drawer>
+          </Drawer> */}
           <Box
             component="main"
             sx={{
               flexGrow: 1,
               bgcolor: "background.default",
-              ml: `${DRAWER_WIDTH}px`,
+              // ml: `${DRAWER_WIDTH}px`,
               mt: ["48px", "56px", "64px"],
               p: 3,
             }}
