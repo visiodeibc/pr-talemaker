@@ -20,6 +20,9 @@ dependencies:
   '@mui/material':
     specifier: latest
     version: 5.15.15(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@types/react@18.2.7)(react-dom@18.2.0)(react@18.2.0)
+  '@types/audiobuffer-to-wav':
+    specifier: ^1.0.4
+    version: 1.0.4
   '@types/node':
     specifier: 20.2.4
     version: 20.2.4
@@ -692,6 +695,10 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.6.2
+    dev: false
+
+  /@types/audiobuffer-to-wav@1.0.4:
+    resolution: {integrity: sha512-lxIdj8z6koV3CEVW6wEXQiH2XBeTzxq1WWa3BtNtCtH++LO7ivWkciki4to0gmphhDKhSSxlce1zJaHIKJMolw==}
     dev: false
 
   /@types/json5@0.0.29:
