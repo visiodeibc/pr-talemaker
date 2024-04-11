@@ -14,7 +14,6 @@
     "@emotion/cache": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@google-cloud/speech": "^6.5.0",
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@types/audiobuffer-to-wav": "^1.0.4",
