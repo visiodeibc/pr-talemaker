@@ -1,15 +1,27 @@
+"use client";
 import * as React from "react";
+import { useRouter } from "next/navigation";
+
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { books } from "@/data/data";
 import { ImageList, ImageListItem } from "@mui/material";
+import Typography from "@mui/material/Typography";
+
+import { books } from "@/data/data";
 
 export default function HomePage() {
+  const router = useRouter();
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ImageList cols={3} gap={12} sx={{ borderRadius: 8 }}>
         {books.map((item) => (
-          <ImageListItem key={item.image} style={{ borderRadius: 8 }}>
+          <ImageListItem
+            key={item.image}
+            style={{ borderRadius: 8 }}
+            onClick={() => {
+              router.push(`/story/${item.index}`);
+            }}
+          >
             <img
               className="image-item"
               src={item.image}
