@@ -8,7 +8,6 @@ import AudiotrackIcon from "@mui/icons-material/Audiotrack"; // import StarIcon 
 import SettingsIcon from "@mui/icons-material/Settings";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import Image from "next/image";
-import logo from "@/public/logo.png";
 
 export const metadata = {
   title: "Next.js App Router + Material UI v5",
@@ -57,8 +56,13 @@ export default function RootLayout({
                 backgroundColor: "background.paper",
               }}
             >
-              <Image src={logo} height={50} width={50} alt="logo" />
-              <Box display="flex" flexDirection="column" alignItems="center">
+              <Image src={"/logo.png"} height={50} width={50} alt="logo" />
+              <Box
+                display="flex"
+                flexDirection="column"
+                alignItems="center"
+                paddingLeft={3}
+              >
                 <Typography variant="h3" color="text.primary">
                   Bao the explorer
                 </Typography>

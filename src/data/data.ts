@@ -1,10 +1,20 @@
-  // Define your tiles here
+// Define your tiles here
 export const books = [
-    { index: 0, title: "The Adventures of React Man", color: "#ffb3b3" },
-    { index: 1, title: "The Mysterious Case of Redux Island", color: "#b3ffb3" },
-    { index: 2, title: "The Journey to TypeScript Land", color: "#b3b3ff" },
-    { index: 3, title: "The Magical World of CSS Wizards", color: "#ffffb3" },
-    { index: 4, title: "The Enigma of API Integration", color: "#b3ffff" },
-    { index: 5, title: "The Quest for Bug-Free Code", color: "#ffb3ff" },
-    { index: 6, title: "+", color: "#qab3df" },
+  { index: 0, title: "Korea", color: "#ffb3b3", image: "/cover/korea.png" },
+  { index: 1, title: "Japan", color: "#b3ffb3", image: "/cover/korea.png" },
+  { index: 2, title: "China", color: "#b3b3ff", image: "/cover/china.png" },
+  {
+    index: 3,
+    title: "Singapore",
+    color: "#ffffb3",
+    image: "/cover/korea.png",
+  },
+  { index: 4, title: "India", color: "#b3ffff", image: "/cover/india.png" },
+  {
+    index: 5,
+    title: "Indonesia",
+    color: "#ffb3ff",
+    image: "/cover/indonesia.png",
+  },
+  { index: 6, title: "+", color: "#qab3df", image: "/cover/indonesia.png" },
 ];
