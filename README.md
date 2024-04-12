@@ -79,8 +79,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## TODO
 
-1. [ ] Hook up gemini for story progression
-2. [ ] Put general desciption/purpose on the landing page
-3. [ ] change logo
-4. [ ] change title
-5. [ ] change font
+1. [ ] Text to Speech - []
+2. [ ] Hook up gemini for story progression
+   1. [ ] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
+   2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
+3. [ ] Put general desciption/purpose on the landing page
+4. [ ] change logo
+5. [ ] change title
+6. [ ] change font

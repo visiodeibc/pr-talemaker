@@ -6,7 +6,7 @@ import { Button, CircularProgress, TextField } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import WaveSurfer from "wavesurfer.js";
-import { transcribeSpeech } from "@/service/serviceGoogle";
+import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
 
 export default function HomePage() {
@@ -78,6 +78,12 @@ export default function HomePage() {
       }
     }
     setRecording(!recording);
+  };
+
+  const playAudio = async () => {
+    const res = await textToSpeech(transcription);
+    const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
+    audio.play();
   };
 
   useEffect(() => {
@@ -196,29 +202,39 @@ export default function HomePage() {
       >
         <Box sx={{ fontSize: "h6.fontSize", fontWeight: "bold" }}>
           Transcription
-          {audioFile && (
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "14px",
-                height: "40px",
-                marginLeft: "10px",
-              }}
-              color={"primary"}
-              disabled={transcribing}
-              onClick={transcribe}
-            >
-              {transcribing && (
-                <CircularProgress
-                  color={"inherit"}
-                  size={20}
-                  sx={{ marginRight: "5px" }}
-                />
-              )}
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "14px",
+              height: "40px",
+              marginLeft: "10px",
+            }}
+            color={"primary"}
+            disabled={transcribing || !audioFile}
+            onClick={transcribe}
+          >
+            {transcribing && (
+              <CircularProgress
+                color={"inherit"}
+                size={20}
+                sx={{ marginRight: "5px" }}
+              />
+            )}
 
-              {"Transcribe"}
-            </Button>
-          )}
+            {"Transcribe"}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "14px",
+              height: "40px",
+              marginLeft: "10px",
+            }}
+            color={"primary"}
+            onClick={playAudio}
+          >
+            {"Play Transcribed"}
+          </Button>
         </Box>
         <TextField
           sx={{ marginTop: "20px" }}
