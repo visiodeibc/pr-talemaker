@@ -63,7 +63,11 @@ export default function RootLayout({
                 alignItems="center"
                 paddingLeft={3}
               >
-                <Typography variant="h3" color="text.primary">
+                <Typography
+                  variant="h3"
+                  color="text.primary"
+                  sx={{ textAlign: "center", fontWeight: "bold" }}
+                >
                   Bao the explorer
                 </Typography>
                 <Typography variant="h6" color="text.secondary">
