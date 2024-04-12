@@ -7,6 +7,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AudiotrackIcon from "@mui/icons-material/Audiotrack"; // import StarIcon from '@mui/icons-material/Star';
 import SettingsIcon from "@mui/icons-material/Settings";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
+import Image from "next/image";
+import logo from "@/public/logo.png";
 
 export const metadata = {
   title: "Next.js App Router + Material UI v5",
@@ -34,20 +36,36 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body style={{ backgroundColor: "#C6DCBA" }}>
+      <body
+        style={{
+          backgroundColor: "#C6DCBA",
+        }}
+      >
         <ThemeRegistry>
-          <AppBar position="fixed" sx={{ zIndex: 2000 }}>
-            <Toolbar sx={{ backgroundColor: "background.paper" }}>
-              <DashboardIcon
-                sx={{
-                  color: "#444",
-                  mr: 2,
-                  transform: "translateY(-2px)",
-                }}
-              />
-              <Typography variant="h6" color="text.primary">
-                TB Neighbors
-              </Typography>
+          <AppBar
+            position="fixed"
+            sx={{
+              zIndex: 2000,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "background.paper",
+            }}
+          >
+            <Toolbar
+              sx={{
+                backgroundColor: "background.paper",
+              }}
+            >
+              <Image src={logo} height={50} width={50} alt="logo" />
+              <Box display="flex" flexDirection="column" alignItems="center">
+                <Typography variant="h3" color="text.primary">
+                  Bao the explorer
+                </Typography>
+                <Typography variant="h6" color="text.secondary">
+                  ft. TB Neighbors
+                </Typography>
+              </Box>
             </Toolbar>
           </AppBar>
           <Box

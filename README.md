@@ -79,7 +79,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## TODO
 
-1. [ ] Text to Speech - []
+1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
 2. [ ] Hook up gemini for story progression
    1. [ ] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
    2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
