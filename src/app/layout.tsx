@@ -3,30 +3,14 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AudiotrackIcon from "@mui/icons-material/Audiotrack"; // import StarIcon from '@mui/icons-material/Star';
-import SettingsIcon from "@mui/icons-material/Settings";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 import Image from "next/image";
 
 export const metadata = {
-  title: "Next.js App Router + Material UI v5",
-  description: "Next.js App Router + Material UI v5",
+  title: "Talebot, where imagination becomes reality",
+  description:
+    "Interactive story maker where kids can create their own legends and tales by TB Neighbors",
 };
-
-const DRAWER_WIDTH = 240;
-
-const LINKS = [
-  { text: "Once upon a time...", href: "/", icon: AudiotrackIcon },
-  // { text: 'Starred', href: '/starred', icon: StarIcon },
-  // { text: 'Tasks', href: '/tasks', icon: ChecklistIcon },
-];
-
-const PLACEHOLDER_LINKS = [
-  { text: "Settings", icon: SettingsIcon },
-  // { text: 'Support', icon: SupportIcon },
-  // { text: 'Logout', icon: LogoutIcon },
-];
 
 export default function RootLayout({
   children,
