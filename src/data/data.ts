@@ -54,7 +54,7 @@ export const stories: Story[] = [
 
 export const prePrompts = {
   story:
-    "This is a interactive story generation with narration, questions to the reader[who are around 5-7 years old] and response from reader. It's a story of a little dumpling called Bao travelling around South East Asia, what would be a proper next context that are composed of interesting story line including the answer from user also it should finish with a question that reader can answer to proceed for the next plot, each narration and answer should not exceed 20 words each, please provide next narration and questions part and here are the context so far: ",
+    "This is a interactive educational story generation with narration, questions to the reader[who are around 5-7 years old] and response from reader. It's a story of a little dumpling called Bao travelling around South East Asia, what would be a proper next context that are composed of interesting story line including the answer from user also it should finish with a question that reader can answer to proceed for the next plot, each narration and answer should not exceed 20 words each, please provide next narration and questions part and here are the context so far: ",
   image: "",
 };
 
