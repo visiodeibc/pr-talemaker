@@ -82,8 +82,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
 2. [ ] Hook up gemini for story progression
    1. [ ] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
+      1. [ ] https://ai.google.dev/tutorials/rest_quickstart
    2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
 3. [ ] Put general desciption/purpose on the landing page
 4. [ ] change logo
 5. [ ] change title
 6. [ ] change font
+7. [ ] multi image/record saving
+8. [ ] google cloud storage에 이전 스토리 저장
