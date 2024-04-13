@@ -48,7 +48,30 @@ export async function textToSpeech(text: string): Promise<any> {
   }
 }
 
-export async function generateImage(prompt: any): Promise<any> {}
+export async function generateImage(prompt: string): Promise<any> {
+  const headers = {
+    Authorization: `Bearer ${process.env.AI_KEY}`,
+    "Content-Type": "application/json",
+  };
+  const data = {
+    model: "dall-e-3",
+    prompt: prompt,
+    n: 1,
+    size: "1024x1024", // Image size
+  };
+  try {
+    const response = await axios.post(
+      "https://api.openai.com/v1/images/generations",
+      data,
+      { headers }
+    );
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error generating image:", error);
+    return null;
+  }
+}
 
 export async function generateStory(story: any): Promise<any> {
   try {
@@ -71,3 +94,32 @@ export async function generateStory(story: any): Promise<any> {
     throw new Error("Failed to fetch data from Google API");
   }
 }
+
+// export async function generateImageG(prompt: string): Promise<any> {
+//   const headers = {
+//     Authorization: `Bearer c0be57716b80b6018c1ced95c1bed9b33b646d95`,
+//     "Content-Type": "application/json",
+//   };
+//   const data = {
+//     instances: [
+//       {
+//         prompt: prompt,
+//       },
+//     ],
+//     parameters: {
+//       sampleCount: 1,
+//     },
+//   };
+//   try {
+//     const response = await axios.post(
+//       "https://us-central1-aiplatform.googleapis.com/v1/projects/visiodeibc/locations/us-central1/publishers/google/models/imagegeneration:predict",
+//       data,
+//       { headers }
+//     );
+//     console.log(response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("Error generating image:", error);
+//     return null;
+//   }
+// }
