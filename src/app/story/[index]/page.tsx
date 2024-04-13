@@ -280,20 +280,6 @@ export default function StoryPage({ params }: { params: any }) {
             >
               {"Make Story"}
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "14px",
-                height: "40px",
-                marginLeft: "10px",
-              }}
-              color={"primary"}
-              onClick={() => {
-                updateImage(plot);
-              }}
-            >
-              {"Update Image"}
-            </Button>
             <Typography
               variant="h5"
               fontWeight="bold"
