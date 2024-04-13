@@ -1,17 +1,14 @@
 "use client";
 import * as React from "react";
-import { useEffect, useRef, useState } from "react";
-import Box from "@mui/material/Box";
-import { Button, CircularProgress, TextField } from "@mui/material";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { useState } from "react";
 
-import WaveSurfer from "wavesurfer.js";
+import Box from "@mui/material/Box";
+import { Button, CircularProgress, TextField, Typography } from "@mui/material";
+
 import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
 
 export default function HomePage() {
-  const waveformRef = useRef(null);
-  const [waveSurfer, setWaveSurfer] = useState<WaveSurfer | null>(null);
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
   const [transcription, setTranscription] = useState<string>(
     "Record Something...."
@@ -41,10 +38,6 @@ export default function HomePage() {
         setTranscribing(false);
       }
     }
-  };
-
-  const play = () => {
-    !!waveSurfer && waveSurfer.play();
   };
 
   const handleRecord = async () => {
@@ -86,33 +79,6 @@ export default function HomePage() {
     audio.play();
   };
 
-  useEffect(() => {
-    if (waveSurfer) {
-      waveSurfer.destroy();
-    }
-    if (audioFile) {
-      const wave = WaveSurfer.create({
-        container: waveformRef.current || "",
-        waveColor: "violet",
-        progressColor: "purple",
-      });
-      const audioUrl = URL.createObjectURL(audioFile);
-      if (wave) {
-        wave.load(audioUrl);
-        wave.on("ready", function () {
-          URL.revokeObjectURL(audioUrl);
-        });
-      }
-      setWaveSurfer(wave);
-    }
-
-    return () => {
-      if (waveSurfer) {
-        waveSurfer.destroy();
-      }
-    };
-  }, [audioFile]);
-
   return (
     <>
       <Box
@@ -129,63 +95,16 @@ export default function HomePage() {
             flexDirection: "column",
           }}
         >
-          <Box sx={{ fontSize: "h6.fontSize", fontWeight: "bold" }}>
-            Recording
-          </Box>
           <Box
             sx={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               margin: "20px",
+              height: "30vh",
             }}
           >
-            {audioFile && (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  padding: "20px",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box
-                  ref={waveformRef}
-                  style={{
-                    width: "200px",
-                    marginRight: "20px",
-                  }}
-                />
-                <Button
-                  variant="contained"
-                  sx={{
-                    borderRadius: "14px",
-                    height: "40px",
-                  }}
-                  color={"secondary"}
-                  onClick={play}
-                  disabled={!audioFile}
-                >
-                  <PlayArrowIcon />
-                </Button>
-              </Box>
-            )}
-            <Button
-              variant="contained"
-              sx={{ borderRadius: "14px", height: "40px" }}
-              color={recording ? "error" : "primary"}
-              onClick={handleRecord}
-            >
-              {recording && (
-                <CircularProgress
-                  color={"inherit"}
-                  size={20}
-                  sx={{ marginRight: "5px" }}
-                />
-              )}
-              {recording ? "Stop" : "Record"}
-            </Button>
+            imges will be here
           </Box>
         </Box>
       </Box>
@@ -200,8 +119,29 @@ export default function HomePage() {
           boxShadow: 2,
         }}
       >
-        <Box sx={{ fontSize: "h6.fontSize", fontWeight: "bold" }}>
-          Transcription
+        <Box>
+          <Typography
+            variant="h5"
+            fontWeight="bold"
+            sx={{ overflowWrap: "break-word" }}
+          >
+            Transcription
+          </Typography>
+          <Button
+            variant="contained"
+            sx={{ borderRadius: "14px", height: "40px" }}
+            color={recording ? "error" : "primary"}
+            onClick={handleRecord}
+          >
+            {recording && (
+              <CircularProgress
+                color={"inherit"}
+                size={20}
+                sx={{ marginRight: "5px" }}
+              />
+            )}
+            {recording ? "Stop" : "Record"}
+          </Button>
           <Button
             variant="contained"
             sx={{
