@@ -7,6 +7,7 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 
 import {
+  generateImage,
   generateStory,
   textToSpeech,
   transcribeSpeech,
@@ -56,6 +57,26 @@ export default function StoryPage({ params }: { params: any }) {
         ],
       });
       playAudio(updatedstory);
+      setPlot(currentPlot);
+      updateImage(currentPlot);
+    } catch (error) {}
+  };
+
+  const updateImage = async (plot: any[]) => {
+    let aggregatedText = "";
+    plot.forEach((item: { role: string; parts: any[] }) => {
+      if (item.parts && item.parts.length > 0) {
+        item.parts.forEach((part: { text: string }) => {
+          if (part.text) {
+            aggregatedText += part.text + "\n\n";
+          }
+        });
+      }
+    });
+
+    try {
+      const response = await generateImage(aggregatedText);
+      setCurrentImg(response.data[0].url);
     } catch (error) {}
   };
 
@@ -258,6 +279,20 @@ export default function StoryPage({ params }: { params: any }) {
               }}
             >
               {"Make Story"}
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                borderRadius: "14px",
+                height: "40px",
+                marginLeft: "10px",
+              }}
+              color={"primary"}
+              onClick={() => {
+                updateImage(plot);
+              }}
+            >
+              {"Update Image"}
             </Button>
             <Typography
               variant="h5"

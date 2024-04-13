@@ -56,7 +56,7 @@ export async function generateImage(prompt: string): Promise<any> {
   };
   const data = {
     model: "dall-e-3",
-    prompt: prompt,
+    prompt: prePrompts.image + prompt,
     n: 1,
     size: "1024x1024", // Image size
   };
@@ -66,7 +66,6 @@ export async function generateImage(prompt: string): Promise<any> {
       data,
       { headers }
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error generating image:", error);
