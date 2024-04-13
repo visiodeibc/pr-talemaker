@@ -1,9 +1,9 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 
 import {
@@ -12,11 +12,14 @@ import {
   transcribeSpeech,
 } from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
-import { stories, prePrompts, defaultPlot } from "@/data/data";
+import { stories, defaultPlot } from "@/data/data";
 import { Story } from "@/data/type";
 
 export default function StoryPage({ params }: { params: any }) {
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
+  const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
+    null
+  );
 
   const [transcribing, setTranscribing] = useState<boolean>(false);
 
@@ -85,8 +88,18 @@ export default function StoryPage({ params }: { params: any }) {
   };
 
   const playAudio = async () => {
+    // Stop the currently playing audio, if any
+    if (currentAudio) {
+      currentAudio.pause();
+      currentAudio.currentTime = 0;
+    }
+
     const res = await textToSpeech(currentLine);
     const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
+
+    // Save the audio to the state so it can be stopped later
+    setCurrentAudio(audio);
+
     audio.play();
   };
 
@@ -164,7 +177,8 @@ export default function StoryPage({ params }: { params: any }) {
             color={"primary"}
             onClick={playAudio}
           >
-            {"|> Play"}
+            <PlayCircleIcon />
+            {"Play"}
           </Button>
         </Box>
       </Box>
