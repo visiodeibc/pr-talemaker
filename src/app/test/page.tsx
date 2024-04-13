@@ -6,8 +6,14 @@ import { Button, CircularProgress, TextField } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 
 import WaveSurfer from "wavesurfer.js";
-import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
+import {
+  generateImage,
+  generateStory,
+  textToSpeech,
+  transcribeSpeech,
+} from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
+import { prePrompts } from "@/data/data";
 
 export default function TestPage() {
   const waveformRef = useRef(null);
@@ -243,8 +249,11 @@ export default function TestPage() {
               marginLeft: "10px",
             }}
             color={"primary"}
-            onClick={() => {
+            onClick={async () => {
               console.log("Test");
+              console.log(
+                await generateStory(prePrompts.story + prePrompts.test)
+              );
             }}
           >
             {"Test"}
