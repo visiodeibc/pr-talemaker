@@ -6,10 +6,14 @@ import { useRouter } from "next/navigation";
 import Box from "@mui/material/Box";
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 
-import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
+import {
+  generateStory,
+  textToSpeech,
+  transcribeSpeech,
+} from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
-import { books } from "@/data/data";
-import { Book } from "@/data/type";
+import { stories, prePrompts, defaultPlot } from "@/data/data";
+import { Story } from "@/data/type";
 
 export default function StoryPage({ params }: { params: any }) {
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
@@ -23,7 +27,8 @@ export default function StoryPage({ params }: { params: any }) {
     null
   );
 
-  const [book, setBook] = useState<Book | null>(null);
+  const [story, setStory] = useState<Story | null>(null);
+  const [plot, setPlot] = useState<any>(null);
   const [currentImg, setCurrentImg] = useState<string>("");
   const router = useRouter();
 
@@ -87,9 +92,14 @@ export default function StoryPage({ params }: { params: any }) {
   };
 
   useEffect(() => {
-    console.log(books[params.index]);
-    setBook(books[params.index]);
-    setCurrentImg(books[params.index].image);
+    const initialStory = stories[params.index];
+    setStory(initialStory);
+    setCurrentImg(initialStory.image);
+    const currentPlot = defaultPlot;
+    currentPlot[1].parts[0].text =
+      `currently bao is travelling in ${initialStory.title};` +
+      initialStory.firstLine;
+    setPlot(currentPlot);
   }, []);
 
   return (
@@ -110,11 +120,11 @@ export default function StoryPage({ params }: { params: any }) {
           }}
         >
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
-            {book?.title}
+            {story?.title}
           </Typography>
           <img
             className="image-item"
-            src={currentImg || book?.image}
+            src={currentImg || story?.image}
             alt={"current image"}
             loading="lazy"
             style={{ borderRadius: 8, height: "35vh" }}
@@ -187,6 +197,20 @@ export default function StoryPage({ params }: { params: any }) {
             onClick={playAudio}
           >
             {"Play Transcribed"}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "14px",
+              height: "40px",
+              marginLeft: "10px",
+            }}
+            color={"primary"}
+            onClick={() => {
+              generateStory(plot);
+            }}
+          >
+            {"Make Story"}
           </Button>
         </Box>
         <TextField

@@ -1,3 +1,4 @@
+import { prePrompts } from "@/data/data";
 import axios from "axios";
 
 export async function transcribeSpeech(audioFile: any): Promise<any> {
@@ -73,20 +74,12 @@ export async function generateImage(prompt: string): Promise<any> {
   }
 }
 
-export async function generateStory(story: any): Promise<any> {
+export async function generateStory(story: []): Promise<any> {
   try {
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GCP_KEY}`,
       {
-        contents: [
-          {
-            parts: [
-              {
-                text: "Write a story about a magic backpack. in less than 20 words",
-              },
-            ],
-          },
-        ],
+        contents: story,
       }
     );
     return response?.data;
