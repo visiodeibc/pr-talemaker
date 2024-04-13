@@ -202,7 +202,9 @@ export default function StoryPage({ params }: { params: any }) {
               mt: 2,
             }}
             color={"primary"}
-            onClick={playAudio}
+            onClick={() => {
+              playAudio();
+            }} // Change the type of onClick event handler
           >
             <PlayCircleIcon />
             {"Play"}
