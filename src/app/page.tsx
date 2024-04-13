@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import { ImageList, ImageListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-import { books } from "@/data/data";
+import { stories } from "@/data/data";
 
 export default function HomePage() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <ImageList cols={3} gap={12} sx={{ borderRadius: 8 }}>
-        {books.map((item) => (
+        {stories.map((item) => (
           <ImageListItem
             key={item.image}
             style={{ borderRadius: 8 }}
