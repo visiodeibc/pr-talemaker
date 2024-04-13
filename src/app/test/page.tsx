@@ -251,9 +251,9 @@ export default function TestPage() {
             color={"primary"}
             onClick={async () => {
               console.log("Test");
-              console.log(
-                await generateStory(prePrompts.story + prePrompts.test)
-              );
+              // console.log(
+              //   await generateStory(prePrompts.story + prePrompts.test)
+              // );
             }}
           >
             {"Test"}
