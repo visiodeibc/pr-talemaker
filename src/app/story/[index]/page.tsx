@@ -16,12 +16,9 @@ import { stories, defaultPlot } from "@/data/data";
 import { Story } from "@/data/type";
 
 export default function StoryPage({ params }: { params: any }) {
-  const [audioFile, setAudioFile] = useState<Blob | null>(null);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
     null
   );
-
-  const [transcribing, setTranscribing] = useState<boolean>(false);
 
   const [recording, setRecording] = useState<boolean>(false);
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
@@ -34,14 +31,45 @@ export default function StoryPage({ params }: { params: any }) {
   const [currentImg, setCurrentImg] = useState<string>("");
   const [uerResponse, setUserResponse] = useState<string>("...");
 
-  const transcribe = async () => {
+  const makeNextStory = async (
+    responseText = "assume an approporiate response and please proceed"
+  ) => {
+    const currentPlot = plot;
+    currentPlot.push({
+      role: "user",
+      parts: [
+        {
+          text: responseText,
+        },
+      ],
+    });
+    try {
+      const response = await generateStory(currentPlot);
+      const updatedstory = response.candidates[0].content.parts[0].text;
+      setCurrentLine(updatedstory);
+      currentPlot.push({
+        role: "model",
+        parts: [
+          {
+            text: updatedstory,
+          },
+        ],
+      });
+      playAudio(updatedstory);
+    } catch (error) {}
+  };
+
+  const transcribe = async (audioFile: Blob | null) => {
     if (audioFile) {
-      setTranscribing(true);
       const base64Audio = await audioBlobToBase64(audioFile);
       try {
         const result = await transcribeSpeech(base64Audio);
         if (result) {
           setUserResponse(result);
+          if (result) {
+            makeNextStory(result);
+          }
+          return result;
         } else {
           console.log("No transcription results in the API response:");
           setUserResponse("No response...");
@@ -49,7 +77,6 @@ export default function StoryPage({ params }: { params: any }) {
       } catch (e) {
         console.log(e);
       } finally {
-        setTranscribing(false);
       }
     }
   };
@@ -74,8 +101,8 @@ export default function StoryPage({ params }: { params: any }) {
         const blob = new Blob(chunks, {
           type: "audio/ogg; codecs=opus",
         });
-        setAudioFile(blob);
         chunks = [];
+        transcribe(blob);
       };
       newMediaRecorder.start();
       setMediaRecorder(newMediaRecorder);
@@ -87,14 +114,14 @@ export default function StoryPage({ params }: { params: any }) {
     setRecording(!recording);
   };
 
-  const playAudio = async () => {
+  const playAudio = async (newLine = currentLine) => {
     // Stop the currently playing audio, if any
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
     }
 
-    const res = await textToSpeech(currentLine);
+    const res = await textToSpeech(newLine || currentLine);
     const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
 
     // Save the audio to the state so it can be stopped later
@@ -224,30 +251,8 @@ export default function StoryPage({ params }: { params: any }) {
                 marginLeft: "10px",
               }}
               color={"primary"}
-              disabled={transcribing || !audioFile}
-              onClick={transcribe}
-            >
-              {transcribing && (
-                <CircularProgress
-                  color={"inherit"}
-                  size={20}
-                  sx={{ marginRight: "5px" }}
-                />
-              )}
-
-              {"Transcribe"}
-            </Button>
-
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "14px",
-                height: "40px",
-                marginLeft: "10px",
-              }}
-              color={"primary"}
               onClick={() => {
-                generateStory(plot);
+                makeNextStory();
               }}
             >
               {"Make Story"}
