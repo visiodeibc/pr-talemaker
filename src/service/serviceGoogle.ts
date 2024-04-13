@@ -50,4 +50,24 @@ export async function textToSpeech(text: string): Promise<any> {
 
 export async function generateImage(prompt: any): Promise<any> {}
 
-export async function generateStory(text: any): Promise<any> {}
+export async function generateStory(story: any): Promise<any> {
+  try {
+    const response = await axios.post(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GCP_KEY}`,
+      {
+        contents: [
+          {
+            parts: [
+              {
+                text: "Write a story about a magic backpack. in less than 20 words",
+              },
+            ],
+          },
+        ],
+      }
+    );
+    return response?.data;
+  } catch (error) {
+    throw new Error("Failed to fetch data from Google API");
+  }
+}
