@@ -92,3 +92,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 7. [ ] multi image/record saving
 8. [ ] google cloud storage에 이전 스토리 저장
 9. [ ] embed image in conversation for better context
+10. [ ] image lazy loading placeholder

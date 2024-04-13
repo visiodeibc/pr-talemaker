@@ -17,9 +17,7 @@ import { Story } from "@/data/type";
 
 export default function StoryPage({ params }: { params: any }) {
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
-  const [transcription, setTranscription] = useState<string>(
-    "Record Something...."
-  );
+
   const [transcribing, setTranscribing] = useState<boolean>(false);
 
   const [recording, setRecording] = useState<boolean>(false);
@@ -27,10 +25,11 @@ export default function StoryPage({ params }: { params: any }) {
     null
   );
 
-  const [story, setStory] = useState<Story | null>(null);
   const [plot, setPlot] = useState<any>(null);
+  const [story, setStory] = useState<Story | null>(null);
+  const [currentLine, setCurrentLine] = useState<string>("");
   const [currentImg, setCurrentImg] = useState<string>("");
-  const router = useRouter();
+  const [uerResponse, setUserResponse] = useState<string>("...");
 
   const transcribe = async () => {
     if (audioFile) {
@@ -39,10 +38,10 @@ export default function StoryPage({ params }: { params: any }) {
       try {
         const result = await transcribeSpeech(base64Audio);
         if (result) {
-          setTranscription(result);
+          setUserResponse(result);
         } else {
           console.log("No transcription results in the API response:");
-          setTranscription("No transcription available");
+          setUserResponse("No response...");
         }
       } catch (e) {
         console.log(e);
@@ -86,7 +85,7 @@ export default function StoryPage({ params }: { params: any }) {
   };
 
   const playAudio = async () => {
-    const res = await textToSpeech(transcription);
+    const res = await textToSpeech(currentLine);
     const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
     audio.play();
   };
@@ -95,6 +94,7 @@ export default function StoryPage({ params }: { params: any }) {
     const initialStory = stories[params.index];
     setStory(initialStory);
     setCurrentImg(initialStory.image);
+    setCurrentLine(initialStory.firstLine);
     const currentPlot = defaultPlot;
     currentPlot[1].parts[0].text =
       `currently bao is travelling in ${initialStory.title};` +
@@ -114,7 +114,6 @@ export default function StoryPage({ params }: { params: any }) {
       >
         <Box
           sx={{
-            // display: "flex",
             flexDirection: "column",
             textAlign: "center",
           }}
@@ -142,87 +141,112 @@ export default function StoryPage({ params }: { params: any }) {
           boxShadow: 2,
         }}
       >
-        <Box>
+        <Box
+          sx={{
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
           <Typography
             variant="h5"
             fontWeight="bold"
             sx={{ overflowWrap: "break-word" }}
           >
-            Transcription
+            {currentLine}
           </Typography>
           <Button
             variant="contained"
-            sx={{ borderRadius: "14px", height: "40px" }}
-            color={recording ? "error" : "primary"}
-            onClick={handleRecord}
-          >
-            {recording && (
-              <CircularProgress
-                color={"inherit"}
-                size={20}
-                sx={{ marginRight: "5px" }}
-              />
-            )}
-            {recording ? "Stop" : "Record"}
-          </Button>
-          <Button
-            variant="contained"
             sx={{
               borderRadius: "14px",
               height: "40px",
-              marginLeft: "10px",
-            }}
-            color={"primary"}
-            disabled={transcribing || !audioFile}
-            onClick={transcribe}
-          >
-            {transcribing && (
-              <CircularProgress
-                color={"inherit"}
-                size={20}
-                sx={{ marginRight: "5px" }}
-              />
-            )}
-
-            {"Transcribe"}
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "14px",
-              height: "40px",
-              marginLeft: "10px",
+              mt: 2,
             }}
             color={"primary"}
             onClick={playAudio}
           >
-            {"Play Transcribed"}
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "14px",
-              height: "40px",
-              marginLeft: "10px",
-            }}
-            color={"primary"}
-            onClick={() => {
-              generateStory(plot);
-            }}
-          >
-            {"Make Story"}
+            {"|> Play"}
           </Button>
         </Box>
-        <TextField
-          sx={{ marginTop: "20px" }}
-          id="outlined-multiline-static"
-          label="transcribed text"
-          multiline
-          rows={4}
-          value={transcription}
-          variant="filled"
-          aria-readonly
-        />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          padding: "20px",
+          marginTop: "20px",
+          borderRadius: "12px",
+          bgcolor: "background.paper",
+          boxShadow: 2,
+        }}
+      >
+        <Box
+          sx={{
+            // display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
+          <Box>
+            <Button
+              variant="contained"
+              sx={{ borderRadius: "14px", height: "40px" }}
+              color={recording ? "error" : "primary"}
+              onClick={handleRecord}
+            >
+              {recording && (
+                <CircularProgress
+                  color={"inherit"}
+                  size={20}
+                  sx={{ marginRight: "5px" }}
+                />
+              )}
+              {recording ? "Stop" : "Record"}
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                borderRadius: "14px",
+                height: "40px",
+                marginLeft: "10px",
+              }}
+              color={"primary"}
+              disabled={transcribing || !audioFile}
+              onClick={transcribe}
+            >
+              {transcribing && (
+                <CircularProgress
+                  color={"inherit"}
+                  size={20}
+                  sx={{ marginRight: "5px" }}
+                />
+              )}
+
+              {"Transcribe"}
+            </Button>
+
+            <Button
+              variant="contained"
+              sx={{
+                borderRadius: "14px",
+                height: "40px",
+                marginLeft: "10px",
+              }}
+              color={"primary"}
+              onClick={() => {
+                generateStory(plot);
+              }}
+            >
+              {"Make Story"}
+            </Button>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              sx={{ overflowWrap: "break-word", mt: 2 }}
+            >
+              {`You said: ${uerResponse}`}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </>
   );
