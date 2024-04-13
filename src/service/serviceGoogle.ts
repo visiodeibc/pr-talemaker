@@ -35,8 +35,8 @@ export async function textToSpeech(text: string): Promise<any> {
           text,
         },
         voice: {
-          languageCode: "en-US",
-          ssmlGender: "MALE",
+          languageCode: "ko-KR",
+          ssmlGender: "FEMALE",
         },
         audioConfig: {
           audioEncoding: "LINEAR16",
