@@ -9,7 +9,7 @@ import WaveSurfer from "wavesurfer.js";
 import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
 
-export default function HomePage() {
+export default function TestPage() {
   const waveformRef = useRef(null);
   const [waveSurfer, setWaveSurfer] = useState<WaveSurfer | null>(null);
   const [audioFile, setAudioFile] = useState<Blob | null>(null);

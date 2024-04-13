@@ -1,5 +1,7 @@
+import { Book } from "./type";
+
 // Define your tiles here
-export const books = [
+export const books: Book[] = [
   { index: 0, title: "Korea", color: "#ffb3b3", image: "/cover/korea.png" },
   { index: 1, title: "Japan", color: "#b3ffb3", image: "/cover/japan.png" },
   { index: 2, title: "China", color: "#b3b3ff", image: "/cover/china.png" },

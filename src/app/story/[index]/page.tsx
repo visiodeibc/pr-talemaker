@@ -1,14 +1,17 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import Box from "@mui/material/Box";
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 
 import { textToSpeech, transcribeSpeech } from "@/service/serviceGoogle";
 import { audioBlobToBase64 } from "@/util";
+import { books } from "@/data/data";
+import { Book } from "@/data/type";
 
-export default function HomePage() {
+export default function StoryPage({ params }: { params: any }) {
   const [audioFile, setAudioFile] = useState<Blob | null>(null);
   const [transcription, setTranscription] = useState<string>(
     "Record Something...."
@@ -19,6 +22,10 @@ export default function HomePage() {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
     null
   );
+
+  const [book, setBook] = useState<Book | null>(null);
+  const [currentImg, setCurrentImg] = useState<string>("");
+  const router = useRouter();
 
   const transcribe = async () => {
     if (audioFile) {
@@ -79,6 +86,12 @@ export default function HomePage() {
     audio.play();
   };
 
+  useEffect(() => {
+    console.log(books[params.index]);
+    setBook(books[params.index]);
+    setCurrentImg(books[params.index].image);
+  }, []);
+
   return (
     <>
       <Box
@@ -91,21 +104,21 @@ export default function HomePage() {
       >
         <Box
           sx={{
-            display: "flex",
+            // display: "flex",
             flexDirection: "column",
+            textAlign: "center",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              margin: "20px",
-              height: "30vh",
-            }}
-          >
-            imges will be here
-          </Box>
+          <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+            {book?.title}
+          </Typography>
+          <img
+            className="image-item"
+            src={currentImg || book?.image}
+            alt={"current image"}
+            loading="lazy"
+            style={{ borderRadius: 8, height: "35vh" }}
+          />
         </Box>
       </Box>
       <Box
