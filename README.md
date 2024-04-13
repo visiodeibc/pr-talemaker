@@ -84,6 +84,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
    1. [ ] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
       1. [ ] https://ai.google.dev/tutorials/rest_quickstart
    2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
+      1. [ ] ai - https://platform.openai.com/docs/api-reference/images/createEdit
 3. [ ] Put general desciption/purpose on the landing page
 4. [ ] change logo
 5. [ ] change title

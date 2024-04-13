@@ -4,6 +4,7 @@ const nextConfig = {
   swcMinify: true,
   env: {
     GCP_KEY: process.env.GCP_KEY,
+    AI_KEY: process.env.AI_KEY,
   },
   modularizeImports: {
     "@mui/icons-material": {
