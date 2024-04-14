@@ -308,24 +308,10 @@ export default function StoryPage({ params }: { params: any }) {
               )}
               {recording ? "Stop" : "Record"}
             </Button>
-            <Button
-              variant="contained"
-              sx={{
-                borderRadius: "14px",
-                height: "40px",
-                marginLeft: "10px",
-              }}
-              color={"primary"}
-              onClick={() => {
-                makeNextStory();
-              }}
-            >
-              {"Make Story"}
-            </Button>
             <Typography
               variant="h5"
               fontWeight="bold"
-              sx={{ overflowWrap: "break-word", m: 2 }}
+              sx={{ overflowWrap: "break-word", mt: 2 }}
             >
               {`You said: ${uerResponse}`}
             </Typography>
