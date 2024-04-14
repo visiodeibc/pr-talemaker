@@ -15,6 +15,8 @@
 9. [ ] embed image in conversation for better context
 10. [x] image lazy loading placeholder
 11. [ ] put home button in the main page[stop audio if so]
+12. [ ] readme 작성
+13. [ ] API 콜 보안 작성
 
 ## Introduction
 
