@@ -1,13 +1,20 @@
-<p align="center">
-  <a href="https://nextjs-fastapi-starter.vercel.app/">
-    <img src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" height="96">
-    <h3 align="center">Next.js FastAPI Starter</h3>
-  </a>
-</p>
+## TODO
 
-<p align="center">Simple Next.js boilerplate that uses <a href="https://fastapi.tiangolo.com/">FastAPI</a> as the API backend.</p>
-
-<br/>
+1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
+2. [x] Hook up gemini for story progression
+   1. [x] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
+      1. [x] https://ai.google.dev/tutorials/rest_quickstart
+   2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
+      1. [x] ai - https://platform.openai.com/docs/api-reference/images/createEdit
+3. [ ] Put general desciption/purpose on the landing page
+4. [ ] change logo
+5. [ ] change title
+6. [ ] change font
+7. [ ] multi image/record saving
+8. [ ] google cloud storage에 이전 스토리 저장
+9. [ ] embed image in conversation for better context
+10. [x] image lazy loading placeholder
+11. [ ] put home button in the main page[stop audio if so]
 
 ## Introduction
 
@@ -76,20 +83,3 @@ To learn more about Next.js, take a look at the following resources:
 - [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## TODO
-
-1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
-2. [ ] Hook up gemini for story progression
-   1. [ ] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
-      1. [ ] https://ai.google.dev/tutorials/rest_quickstart
-   2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
-      1. [ ] ai - https://platform.openai.com/docs/api-reference/images/createEdit
-3. [ ] Put general desciption/purpose on the landing page
-4. [ ] change logo
-5. [ ] change title
-6. [ ] change font
-7. [ ] multi image/record saving
-8. [ ] google cloud storage에 이전 스토리 저장
-9. [ ] embed image in conversation for better context
-10. [ ] image lazy loading placeholder
