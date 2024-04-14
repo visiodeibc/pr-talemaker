@@ -58,7 +58,7 @@ export async function generateImage(prompt: string): Promise<any> {
     model: "dall-e-3",
     prompt: prePrompts.image + prompt,
     n: 1,
-    size: "1024x1024", // Image size
+    size: "1792x1024", // Image size
   };
   try {
     const response = await axios.post(
