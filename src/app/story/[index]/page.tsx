@@ -185,7 +185,6 @@ export default function StoryPage({ params }: { params: any }) {
       >
         <Box
           sx={{
-            flexDirection: "column",
             textAlign: "center",
           }}
         >
@@ -198,7 +197,7 @@ export default function StoryPage({ params }: { params: any }) {
               src={currentImg}
               alt={"current image"}
               loading="lazy"
-              style={{ borderRadius: 8, height: "35vh" }}
+              style={{ borderRadius: 8, height: "40vh" }}
             />
             {imgLoading && (
               <Box
