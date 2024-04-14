@@ -40,7 +40,6 @@ export default function StoryPage({ params }: { params: any }) {
   const makeNextStory = async (
     responseText = "assume an approporiate response and please proceed"
   ) => {
-    setStoryLoading(true);
     const currentPlot = plot;
     currentPlot.push({
       role: "user",
@@ -71,7 +70,6 @@ export default function StoryPage({ params }: { params: any }) {
   };
 
   const updateImage = async (plot: any[]) => {
-    setImgLoading(true);
     let aggregatedText = "";
     plot.forEach((item: { role: string; parts: any[] }) => {
       if (item.parts && item.parts.length > 0) {
@@ -134,6 +132,8 @@ export default function StoryPage({ params }: { params: any }) {
           type: "audio/ogg; codecs=opus",
         });
         chunks = [];
+        setStoryLoading(true);
+        setImgLoading(true);
         transcribe(blob);
       };
       newMediaRecorder.start();
