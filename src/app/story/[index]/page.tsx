@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { Button, CircularProgress, TextField, Typography } from "@mui/material";
 
 import {
@@ -32,9 +34,13 @@ export default function StoryPage({ params }: { params: any }) {
   const [currentImg, setCurrentImg] = useState<string>("");
   const [uerResponse, setUserResponse] = useState<string>("...");
 
+  const [imgLoading, setImgLoading] = useState<boolean>(false);
+  const [storyLoading, setStoryLoading] = useState<boolean>(false);
+
   const makeNextStory = async (
     responseText = "assume an approporiate response and please proceed"
   ) => {
+    setStoryLoading(true);
     const currentPlot = plot;
     currentPlot.push({
       role: "user",
@@ -59,10 +65,13 @@ export default function StoryPage({ params }: { params: any }) {
       playAudio(updatedstory);
       setPlot(currentPlot);
       updateImage(currentPlot);
-    } catch (error) {}
+    } finally {
+      setStoryLoading(false);
+    }
   };
 
   const updateImage = async (plot: any[]) => {
+    setImgLoading(true);
     let aggregatedText = "";
     plot.forEach((item: { role: string; parts: any[] }) => {
       if (item.parts && item.parts.length > 0) {
@@ -77,7 +86,9 @@ export default function StoryPage({ params }: { params: any }) {
     try {
       const response = await generateImage(aggregatedText);
       setCurrentImg(response.data[0].url);
-    } catch (error) {}
+    } finally {
+      setImgLoading(false);
+    }
   };
 
   const transcribe = async (audioFile: Blob | null) => {
@@ -135,19 +146,18 @@ export default function StoryPage({ params }: { params: any }) {
     setRecording(!recording);
   };
 
-  const playAudio = async (newLine = currentLine) => {
-    // Stop the currently playing audio, if any
+  const stopAudio = () => {
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
     }
+  };
 
+  const playAudio = async (newLine = currentLine) => {
+    stopAudio();
     const res = await textToSpeech(newLine || currentLine);
     const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
-
-    // Save the audio to the state so it can be stopped later
     setCurrentAudio(audio);
-
     audio.play();
   };
 
@@ -164,7 +174,7 @@ export default function StoryPage({ params }: { params: any }) {
   }, []);
 
   return (
-    <>
+    <div>
       <Box
         sx={{
           padding: "20px",
@@ -182,13 +192,32 @@ export default function StoryPage({ params }: { params: any }) {
           <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
             {story?.title}
           </Typography>
-          <img
-            className="image-item"
-            src={currentImg || story?.image}
-            alt={"current image"}
-            loading="lazy"
-            style={{ borderRadius: 8, height: "35vh" }}
-          />
+          <Box style={{ position: "relative" }}>
+            <img
+              className="image-item"
+              src={currentImg}
+              alt={"current image"}
+              loading="lazy"
+              style={{ borderRadius: 8, height: "35vh" }}
+            />
+            {imgLoading && (
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "35vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 9999,
+                }}
+              >
+                <CircularProgress color="secondary" />
+              </Box>
+            )}
+          </Box>
         </Box>
       </Box>
       <Box
@@ -220,15 +249,28 @@ export default function StoryPage({ params }: { params: any }) {
             sx={{
               borderRadius: "14px",
               height: "40px",
-              mt: 2,
+              m: 1,
             }}
             color={"primary"}
             onClick={() => {
               playAudio();
-            }} // Change the type of onClick event handler
+            }}
           >
             <PlayCircleIcon />
             {"Play"}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              borderRadius: "14px",
+              height: "40px",
+              m: 1,
+            }}
+            color={"primary"}
+            onClick={stopAudio}
+          >
+            <StopCircleIcon />
+            {"Stop"}
           </Button>
         </Box>
       </Box>
@@ -245,7 +287,6 @@ export default function StoryPage({ params }: { params: any }) {
       >
         <Box
           sx={{
-            // display: "flex",
             flexDirection: "column",
             textAlign: "center",
           }}
@@ -256,6 +297,7 @@ export default function StoryPage({ params }: { params: any }) {
               sx={{ borderRadius: "14px", height: "40px" }}
               color={recording ? "error" : "primary"}
               onClick={handleRecord}
+              disabled={storyLoading || imgLoading}
             >
               {recording && (
                 <CircularProgress
@@ -283,13 +325,13 @@ export default function StoryPage({ params }: { params: any }) {
             <Typography
               variant="h5"
               fontWeight="bold"
-              sx={{ overflowWrap: "break-word", mt: 2 }}
+              sx={{ overflowWrap: "break-word", m: 2 }}
             >
               {`You said: ${uerResponse}`}
             </Typography>
           </Box>
         </Box>
       </Box>
-    </>
+    </div>
   );
 }
