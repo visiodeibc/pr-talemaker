@@ -16,7 +16,12 @@
 10. [x] image lazy loading placeholder
 11. [ ] put home button in the main page[stop audio if so]
 12. [ ] readme 작성
-13. [ ] API 콜 보안 작성
+13. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
+14. [ ] safari 안되는 이슈
+15. [ ] 모바일에서 확인은 될정도로..
+16. [ ] 버그 픽스
+    1. [ ] voice input 없는 경우 대응 가능하도록 수정
+    2. [ ] Img load 완료시 loading indicator 수정
 
 ## Introduction
 
