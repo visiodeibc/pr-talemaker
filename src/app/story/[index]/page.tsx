@@ -84,8 +84,8 @@ export default function StoryPage({ params }: { params: any }) {
     try {
       const response = await generateImage(aggregatedText);
       setCurrentImg(response.data[0].url);
-    } finally {
-      setImgLoading(false);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -96,12 +96,11 @@ export default function StoryPage({ params }: { params: any }) {
         const result = await transcribeSpeech(base64Audio);
         if (result) {
           setUserResponse(result);
-          if (result) {
-            makeNextStory(result);
-          }
+          makeNextStory(result);
           return result;
         } else {
           console.log("No transcription results in the API response:");
+          makeNextStory();
           setUserResponse("No response...");
         }
       } catch (e) {
@@ -197,6 +196,9 @@ export default function StoryPage({ params }: { params: any }) {
               src={currentImg}
               alt={"current image"}
               loading="lazy"
+              onLoad={() => {
+                setImgLoading(false);
+              }}
               style={{ borderRadius: 8, height: "40vh" }}
             />
             {imgLoading && (
