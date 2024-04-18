@@ -10,18 +10,17 @@ const roboto = Roboto({
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#EFBC9B",
+      main: "#8DE9B3",
     },
     secondary: {
       main: "#FBF3D5",
     },
-
     error: {
       main: "#red",
     },
     background: {
-      default: "#fff",
-      paper: "#D7E4C0",
+      default: "#FFFFFF",
+      paper: "#FAF5F9",
     },
     text: {
       primary: "#423731", // your desired color
