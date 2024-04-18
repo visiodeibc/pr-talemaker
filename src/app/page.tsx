@@ -8,11 +8,13 @@ import Image from "next/image";
 import Box from "@mui/material/Box";
 import {
   AppBar,
+  IconButton,
   ImageList,
   ImageListItem,
   ImageListItemBar,
   useMediaQuery,
 } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -133,13 +135,18 @@ export default function HomePage() {
               />
               <ImageListItemBar
                 title={item.title}
-                subtitle={item.subtitle}
+                subtitle={<Typography>{item.subtitle}</Typography>}
                 sx={{
                   borderStartStartRadius: 8,
                   borderStartEndRadius: 8,
                   backgroundColor: "rgba(0, 0, 0, 0)",
                   fontWeight: 700,
                 }}
+                actionIcon={
+                  <IconButton sx={{ color: "white" }}>
+                    <ArrowForwardIcon />
+                  </IconButton>
+                }
                 position="top"
               />
             </ImageListItem>
