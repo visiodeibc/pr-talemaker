@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import { AppBar, ImageList, ImageListItem, useMediaQuery } from "@mui/material";
+import {
+  AppBar,
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  useMediaQuery,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -91,7 +97,11 @@ export default function HomePage() {
         >
           BAO the Explorer
         </Typography>
-        <ImageList cols={matchDownMd ? 1 : 3} gap={12} sx={{ mx: 30, pb: 10 }}>
+        <ImageList
+          cols={matchDownMd ? 1 : 3}
+          gap={12}
+          sx={{ mx: matchDownMd ? 10 : 15, pb: 10 }}
+        >
           {stories.map((item) => (
             <ImageListItem
               key={item.image}
@@ -119,16 +129,18 @@ export default function HomePage() {
                   justifyContent: "center",
                   borderRadius: 8,
                 }}
-              >
-                <Typography
-                  variant="h2"
-                  component="div"
-                  color="white"
-                  sx={{ textAlign: "center", fontWeight: "bold" }}
-                >
-                  {item.title}
-                </Typography>
-              </div>
+              />
+              <ImageListItemBar
+                title={item.title}
+                subtitle={item.subtitle}
+                sx={{
+                  borderStartStartRadius: 8,
+                  borderStartEndRadius: 8,
+                  backgroundColor: "rgba(0, 0, 0, 0)",
+                  fontWeight: 700,
+                }}
+                position="top"
+              />
             </ImageListItem>
           ))}
         </ImageList>
