@@ -67,7 +67,7 @@ export default function HomePage() {
           <Typography
             fontStyle={"Montserrat"}
             fontWeight={600}
-            fontSize={80}
+            fontSize={matchDownMd ? 40 : 80}
             lineHeight={1}
           >
             Where your imagination becomes a story
