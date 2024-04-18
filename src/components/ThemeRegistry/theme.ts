@@ -1,11 +1,4 @@
-import { Roboto } from "next/font/google";
 import { createTheme } from "@mui/material/styles";
-
-const roboto = Roboto({
-  weight: ["300", "400", "500", "700"],
-  subsets: ["latin"],
-  display: "swap",
-});
 
 const theme = createTheme({
   palette: {
@@ -23,13 +16,23 @@ const theme = createTheme({
       paper: "#FAF5F9",
     },
     text: {
-      primary: "#423731", // your desired color
+      primary: "#303030", // your desired color
       secondary: "#6B8E23", // your desired color
     },
     mode: "light",
   },
   typography: {
-    fontFamily: roboto.style.fontFamily,
+    fontFamily: [
+      "Montserrat",
+      "Pretendard",
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+    ].join(","),
   },
   components: {
     MuiAlert: {

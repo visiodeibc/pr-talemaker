@@ -1,10 +1,10 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
-import Image from "next/image";
+import "../../public/fonts/Pretendard/pretendard.css";
+<link
+  href="https://fonts.googleapis.com/css?family=Montserrat&display=optional"
+  rel="stylesheet"
+/>;
 
 export const metadata = {
   title: "Talebot, where imagination becomes reality",
