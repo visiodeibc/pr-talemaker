@@ -5,13 +5,15 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
+import { AppBar, ImageList, ImageListItem, useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
+import theme from "@/components/ThemeRegistry/theme";
 
 export default function HomePage() {
   const router = useRouter();
+  const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -35,12 +37,13 @@ export default function HomePage() {
       <Box
         sx={{
           display: "flex",
-          flexDirection: "row", // Add this line
+          flexDirection: "row",
           backgroundImage: "background.paper",
-          height: "60vh",
+          minHeight: "60vh", // Change height to minHeight
           alignItems: "center",
           justifyContent: "center",
           pt: 8,
+          pb: 3,
         }}
       >
         <Box
@@ -88,7 +91,7 @@ export default function HomePage() {
         >
           BAO the Explorer
         </Typography>
-        <ImageList cols={3} gap={12} sx={{ mx: 30, pb: 10 }}>
+        <ImageList cols={matchDownMd ? 1 : 3} gap={12} sx={{ mx: 30, pb: 10 }}>
           {stories.map((item) => (
             <ImageListItem
               key={item.image}
