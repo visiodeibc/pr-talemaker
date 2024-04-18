@@ -21,56 +21,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         style={{
-          backgroundColor: "#C6DCBA",
+          backgroundColor: "#FAF5F9",
         }}
       >
-        <ThemeRegistry>
-          <AppBar
-            position="fixed"
-            sx={{
-              zIndex: 2000,
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "background.paper",
-            }}
-          >
-            <Toolbar
-              sx={{
-                backgroundColor: "background.paper",
-              }}
-            >
-              <Image src={"/logo.png"} height={50} width={50} alt="logo" />
-              <Box
-                display="flex"
-                flexDirection="column"
-                alignItems="center"
-                paddingLeft={3}
-              >
-                <Typography
-                  variant="h3"
-                  color="text.primary"
-                  sx={{ textAlign: "center", fontWeight: "bold" }}
-                >
-                  Bao the explorer
-                </Typography>
-                <Typography variant="h6" color="text.secondary">
-                  ft. TB Neighbors
-                </Typography>
-              </Box>
-            </Toolbar>
-          </AppBar>
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              mt: 10,
-              p: 5,
-            }}
-          >
-            {children}
-          </Box>
-        </ThemeRegistry>
+        <ThemeRegistry>{children}</ThemeRegistry>
       </body>
     </html>
   );
