@@ -1,6 +1,5 @@
 import * as React from "react";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
-import "../../public/fonts/Pretendard/pretendard.css";
 <link
   href="https://fonts.googleapis.com/css?family=Montserrat&display=optional"
   rel="stylesheet"

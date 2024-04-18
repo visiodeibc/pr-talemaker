@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import { AppBar, ImageList, ImageListItem } from "@mui/material";
+import { AppBar, Container, ImageList, ImageListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -34,9 +34,10 @@ export default function HomePage() {
       </AppBar>
       <Box
         sx={{
+          display: "flex",
+          flexDirection: "row", // Add this line
           backgroundImage: "background.paper",
           height: "60vh",
-          display: "flex",
           alignItems: "center",
           justifyContent: "center",
           pt: 8,
@@ -87,11 +88,10 @@ export default function HomePage() {
         >
           BAO the Explorer
         </Typography>
-        <ImageList cols={3} gap={12} sx={{ borderRadius: 8, mx: 30 }}>
+        <ImageList cols={3} gap={12} sx={{ mx: 30, pb: 10 }}>
           {stories.map((item) => (
             <ImageListItem
               key={item.image}
-              style={{ borderRadius: 8 }}
               onClick={() => {
                 router.push(`/story/${item.index}`);
               }}
@@ -129,6 +129,19 @@ export default function HomePage() {
             </ImageListItem>
           ))}
         </ImageList>
+      </Box>
+      <Box
+        sx={{
+          display: "flex", // Add this line
+          my: 5,
+          mt: 7,
+          px: 3,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Image src={"/talemaker_logo.png"} height={42} width={206} alt="logo" />
+        <Typography>{"© talemaker. 2024. "}</Typography>
       </Box>
     </Box>
   );
