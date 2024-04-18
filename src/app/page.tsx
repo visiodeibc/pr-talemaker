@@ -5,7 +5,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import { AppBar, ImageList, ImageListItem, Toolbar } from "@mui/material";
+import {
+  AppBar,
+  ImageList,
+  ImageListItem,
+  Toolbar,
+  colors,
+} from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -16,32 +22,69 @@ export default function HomePage() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="fixed"
+        position="relative"
         sx={{
-          zIndex: 2000,
           display: "flex",
-          backgroundColor: "background.paper",
+          backgroundColor: "background.default",
         }}
+        elevation={0}
       >
-        <Toolbar
-          sx={{
-            backgroundColor: "background.paper",
-          }}
-        >
+        <Box sx={{ py: 0.5 }}>
           <Image
             src={"/talemaker_logo.png"}
             height={42}
             width={206}
             alt="logo"
           />
-        </Toolbar>
+        </Box>
       </AppBar>
+      <Box
+        sx={{
+          backgroundImage: "background.paper",
+          height: "60vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pt: 8,
+        }}
+      >
+        <Box
+          sx={{
+            width: "65vw",
+            display: "flex",
+            textAlign: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <Typography
+            fontStyle={"Montserrat"}
+            fontWeight={600}
+            fontSize={80}
+            lineHeight={1}
+          >
+            Where your imagination becomes a story
+          </Typography>
+          <Typography
+            fontStyle={"Montserrat"}
+            fontWeight={600}
+            fontSize={25}
+            color={"#797979"}
+            marginTop={4}
+          >
+            Attention explorers! Let’s go on an Asia quest together. <br />
+            Discover and create your own adventure story with Bao. Where should
+            we go first?
+          </Typography>
+        </Box>
+      </Box>
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           mt: 10,
           p: 3,
+          backgroundColor: "background.default",
         }}
       >
         <Typography
