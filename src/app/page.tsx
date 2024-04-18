@@ -5,13 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import {
-  AppBar,
-  ImageList,
-  ImageListItem,
-  Toolbar,
-  colors,
-} from "@mui/material";
+import { AppBar, ImageList, ImageListItem } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -82,8 +76,6 @@ export default function HomePage() {
         component="main"
         sx={{
           flexGrow: 1,
-          mt: 10,
-          p: 3,
           backgroundColor: "background.default",
         }}
       >
@@ -91,11 +83,11 @@ export default function HomePage() {
           fontStyle={"Montserrat"}
           fontWeight={700}
           fontSize={35}
-          sx={{ textAlign: "center" }}
+          sx={{ textAlign: "center", pt: 4, pb: 2 }}
         >
           BAO the Explorer
         </Typography>
-        <ImageList cols={3} gap={12} sx={{ borderRadius: 8 }}>
+        <ImageList cols={3} gap={12} sx={{ borderRadius: 8, mx: 30 }}>
           {stories.map((item) => (
             <ImageListItem
               key={item.image}
