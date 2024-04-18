@@ -5,6 +5,7 @@ export const stories: Story[] = [
   {
     index: 0,
     title: "Korea",
+    subtitle: "Adventure time in Namsan tower, Seoul",
     color: "#ffb3b3",
     image: "/cover/korea.png",
     firstLine:
@@ -13,6 +14,7 @@ export const stories: Story[] = [
   {
     index: 1,
     title: "Japan",
+    subtitle: "Bao’s food frenzy in Tokyo",
     color: "#b3ffb3",
     image: "/cover/japan.png",
     firstLine:
@@ -21,6 +23,7 @@ export const stories: Story[] = [
   {
     index: 2,
     title: "China",
+    subtitle: "Let’s go to Bao's home to China!",
     color: "#b3b3ff",
     image: "/cover/china.png",
     firstLine:
@@ -29,6 +32,7 @@ export const stories: Story[] = [
   {
     index: 3,
     title: "Singapore",
+    subtitle: "Mystery missions in Singapore!",
     color: "#ffffb3",
     image: "/cover/singapore.png",
     firstLine:
@@ -37,6 +41,7 @@ export const stories: Story[] = [
   {
     index: 4,
     title: "India",
+    subtitle: "Friends making fun in India!",
     color: "#b3ffff",
     image: "/cover/india.png",
     firstLine:
@@ -45,6 +50,7 @@ export const stories: Story[] = [
   {
     index: 5,
     title: "Indonesia",
+    subtitle: "Mythical adventures with Komodo dragons in Indonesia",
     color: "#ffb3ff",
     image: "/cover/indonesia.png",
     firstLine:
