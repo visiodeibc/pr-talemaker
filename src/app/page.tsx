@@ -44,8 +44,13 @@ export default function HomePage() {
           p: 3,
         }}
       >
-        <Typography variant="h1" component="h1" sx={{ textAlign: "center" }}>
-          Bao the Explorer
+        <Typography
+          fontStyle={"Montserrat"}
+          fontWeight={700}
+          fontSize={35}
+          sx={{ textAlign: "center" }}
+        >
+          BAO the Explorer
         </Typography>
         <ImageList cols={3} gap={12} sx={{ borderRadius: 8 }}>
           {stories.map((item) => (
