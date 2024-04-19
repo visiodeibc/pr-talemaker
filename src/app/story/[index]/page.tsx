@@ -9,6 +9,7 @@ import StopCircleIcon from "@mui/icons-material/StopCircle";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   AppBar,
+  Avatar,
   Button,
   CircularProgress,
   IconButton,
@@ -189,7 +190,7 @@ export default function StoryPage({ params }: { params: any }) {
   }, []);
 
   return (
-    <div>
+    <Box>
       <AppBar
         position="relative"
         sx={{
@@ -227,149 +228,124 @@ export default function StoryPage({ params }: { params: any }) {
       </AppBar>
       <Box
         sx={{
-          padding: "20px",
-          bgcolor: "background.paper",
-          borderRadius: "12px",
-          boxShadow: 2,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          my: 5,
+          mx: matchDownMd ? 10 : 15,
         }}
       >
         <Box
           sx={{
-            textAlign: "center",
+            padding: "20px",
+            bgcolor: "background.default",
+            borderRadius: "12px",
+            boxShadow: 2,
           }}
         >
-          <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
-            {story?.title}
-          </Typography>
-          <Box style={{ position: "relative" }}>
-            <img
-              className="image-item"
-              src={currentImg}
-              alt={"current image"}
-              loading="lazy"
-              onLoad={() => {
-                setImgLoading(false);
-              }}
-              style={{ borderRadius: 8, height: "40vh" }}
-            />
-            {imgLoading && (
+          <Box
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            <Box style={{ position: "relative" }}>
+              <img
+                className="image-item"
+                src={currentImg}
+                alt={"current image"}
+                loading="lazy"
+                onLoad={() => {
+                  setImgLoading(false);
+                }}
+                style={{ borderRadius: 8, height: "40vh" }}
+              />
+              {imgLoading && (
+                <Box
+                  sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "35vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 9999,
+                  }}
+                >
+                  <CircularProgress color="secondary" />
+                </Box>
+              )}
               <Box
                 sx={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "35vh",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  zIndex: 9999,
+                  flexDirection: "column",
+                  textAlign: "center",
                 }}
               >
-                <CircularProgress color="secondary" />
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  sx={{ overflowWrap: "break-word" }}
+                >
+                  {currentLine}
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "14px",
+                    height: "40px",
+                    m: 1,
+                  }}
+                  color={"primary"}
+                  onClick={() => {
+                    playAudio();
+                  }}
+                >
+                  <PlayCircleIcon />
+                  {"Play"}
+                </Button>
+                <Button
+                  variant="contained"
+                  sx={{
+                    borderRadius: "14px",
+                    height: "40px",
+                    m: 1,
+                  }}
+                  color={"primary"}
+                  onClick={stopAudio}
+                >
+                  <StopCircleIcon />
+                  {"Stop"}
+                </Button>
+                <Typography
+                  variant="h5"
+                  fontWeight="bold"
+                  sx={{ overflowWrap: "break-word", mt: 2 }}
+                >
+                  {`You said: ${uerResponse}`}
+                </Typography>
               </Box>
-            )}
+            </Box>
           </Box>
         </Box>
-      </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "20px",
-          marginTop: "20px",
-          borderRadius: "12px",
-          bgcolor: "background.paper",
-          boxShadow: 2,
-        }}
-      >
-        <Box
-          sx={{
-            flexDirection: "column",
-            textAlign: "center",
-          }}
+        <Button
+          color="secondary"
+          sx={{ my: 2 }}
+          onClick={handleRecord}
+          disabled={storyLoading || imgLoading}
         >
-          <Typography
-            variant="h5"
-            fontWeight="bold"
-            sx={{ overflowWrap: "break-word" }}
-          >
-            {currentLine}
-          </Typography>
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "14px",
-              height: "40px",
-              m: 1,
-            }}
-            color={"primary"}
-            onClick={() => {
-              playAudio();
-            }}
-          >
-            <PlayCircleIcon />
-            {"Play"}
-          </Button>
-          <Button
-            variant="contained"
-            sx={{
-              borderRadius: "14px",
-              height: "40px",
-              m: 1,
-            }}
-            color={"primary"}
-            onClick={stopAudio}
-          >
-            <StopCircleIcon />
-            {"Stop"}
-          </Button>
-        </Box>
+          <Avatar
+            src={
+              storyLoading || imgLoading
+                ? "/buttons/recording_btn_disabled.png"
+                : recording
+                  ? "/buttons/recording_btn_ing.png"
+                  : "/buttons/recording_btn_start.png"
+            }
+            sx={{ height: "80px", width: "80px" }}
+          />
+        </Button>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "20px",
-          marginTop: "20px",
-          borderRadius: "12px",
-          bgcolor: "background.paper",
-          boxShadow: 2,
-        }}
-      >
-        <Box
-          sx={{
-            flexDirection: "column",
-            textAlign: "center",
-          }}
-        >
-          <Box>
-            <Button
-              variant="contained"
-              sx={{ borderRadius: "14px", height: "40px" }}
-              color={recording ? "error" : "primary"}
-              onClick={handleRecord}
-              disabled={storyLoading || imgLoading}
-            >
-              {recording && (
-                <CircularProgress
-                  color={"inherit"}
-                  size={20}
-                  sx={{ marginRight: "5px" }}
-                />
-              )}
-              {recording ? "Stop" : "Record"}
-            </Button>
-            <Typography
-              variant="h5"
-              fontWeight="bold"
-              sx={{ overflowWrap: "break-word", mt: 2 }}
-            >
-              {`You said: ${uerResponse}`}
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
-    </div>
+    </Box>
   );
 }
