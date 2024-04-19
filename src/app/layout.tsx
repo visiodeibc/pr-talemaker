@@ -6,9 +6,9 @@ import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
 />;
 
 export const metadata = {
-  title: "Talebot, where imagination becomes reality",
+  title: "talemaker, where imagination becomes reality",
   description:
-    "Interactive story maker where kids can create their own legends and tales by TB Neighbors",
+    "Interactive story maker where children fulfill and thrive in their imagination",
 };
 
 export default function RootLayout({
