@@ -4,6 +4,7 @@ export interface Story {
   title: string;
   subtitle: string;
   color: string;
-  image: string;
+  storyImage: string;
+  coverImage: string;
   firstLine: string;
 }

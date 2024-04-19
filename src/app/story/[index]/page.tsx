@@ -183,7 +183,7 @@ export default function StoryPage({ params }: { params: any }) {
   useEffect(() => {
     const initialStory = stories[params.index];
     setStory(initialStory);
-    setCurrentImg(initialStory.image);
+    setCurrentImg(initialStory.storyImage);
     setCurrentLine(initialStory.firstLine);
     const currentPlot = defaultPlot;
     currentPlot[1].parts[0].text =
@@ -308,24 +308,36 @@ export default function StoryPage({ params }: { params: any }) {
               <Box
                 sx={{
                   flexDirection: "column",
-                  textAlign: "center",
+                  py: 3,
+                  px: matchDownMd ? 10 : 15,
                 }}
               >
                 <Typography
-                  variant="h5"
-                  fontWeight="bold"
-                  sx={{ overflowWrap: "break-word" }}
+                  fontWeight={600}
+                  fontSize={26}
+                  sx={{ overflowWrap: "break-word", textAlign: "left" }}
                 >
                   {currentLine}
                 </Typography>
-
-                <Typography
-                  variant="h5"
-                  fontWeight="bold"
-                  sx={{ overflowWrap: "break-word", mt: 2 }}
+                <Box
+                  sx={{
+                    p: 2,
+                    pt: 0,
+                    mt: 1,
+                    borderRadius: 12,
+                    backgroundColor: "#55BA93",
+                    textAlign: "left",
+                  }}
                 >
-                  {`You said: ${uerResponse}`}
-                </Typography>
+                  <Typography
+                    fontWeight={600}
+                    fontSize={21}
+                    lineHeight={0.5}
+                    sx={{ overflowWrap: "break-word", pt: 2, color: "white" }}
+                  >
+                    {`You said: ${uerResponse}`}
+                  </Typography>
+                </Box>
               </Box>
             </Box>
           </Box>

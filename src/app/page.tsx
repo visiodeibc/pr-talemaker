@@ -6,15 +6,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import {
-  AppBar,
-  IconButton,
-  ImageList,
-  ImageListItem,
-  ImageListItemBar,
-  useMediaQuery,
-} from "@mui/material";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { AppBar, ImageList, ImageListItem, useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
 import { stories } from "@/data/data";
@@ -97,53 +89,17 @@ export default function HomePage() {
         </Typography>
         <ImageList
           cols={matchDownMd ? 1 : 3}
-          gap={12}
-          sx={{ mx: matchDownMd ? 10 : 15, pb: 10 }}
+          gap={15}
+          sx={{ mx: matchDownMd ? 10 : 30, pb: 10 }}
         >
           {stories.map((item) => (
             <ImageListItem
-              key={item.image}
+              key={item.coverImage}
               onClick={() => {
                 router.push(`/story/${item.index}`);
               }}
             >
-              <img
-                className="image-item"
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-                style={{ borderRadius: 8, height: "40%" }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  backgroundColor: "rgba(0, 0, 0, 0.3)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 8,
-                }}
-              />
-              <ImageListItemBar
-                title={item.title}
-                subtitle={<Typography>{item.subtitle}</Typography>}
-                sx={{
-                  borderStartStartRadius: 8,
-                  borderStartEndRadius: 8,
-                  backgroundColor: "rgba(0, 0, 0, 0)",
-                  fontWeight: 700,
-                }}
-                actionIcon={
-                  <IconButton sx={{ color: "white" }}>
-                    <ArrowForwardIcon />
-                  </IconButton>
-                }
-                position="top"
-              />
+              <img src={item.coverImage} alt={item.title} loading="lazy" />
             </ImageListItem>
           ))}
         </ImageList>
