@@ -278,7 +278,6 @@ export default function StoryPage({ params }: { params: any }) {
                 }}
               >
                 <img
-                  className="image-item"
                   src={currentImg}
                   alt={"current image"}
                   loading="lazy"
@@ -294,14 +293,14 @@ export default function StoryPage({ params }: { params: any }) {
                       top: 0,
                       left: 0,
                       width: "100%",
-                      height: "35vh",
+                      height: "40vh",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
                       zIndex: 9999,
                     }}
                   >
-                    <CircularProgress color="secondary" />
+                    <CircularProgress color="primary" />
                   </Box>
                 )}
               </Box>
@@ -321,21 +320,43 @@ export default function StoryPage({ params }: { params: any }) {
                 </Typography>
                 <Box
                   sx={{
-                    p: 2,
-                    pt: 0,
-                    mt: 1,
-                    borderRadius: 12,
-                    backgroundColor: "#55BA93",
-                    textAlign: "left",
+                    display: "flex",
+                    flexDirection: "row",
+                    pt: 2,
                   }}
                 >
+                  <Box
+                    sx={{
+                      p: 2,
+                      pt: 0,
+                      mt: 1,
+                      borderRadius: 12,
+                      backgroundColor: "#55BA93",
+                      textAlign: "left",
+                    }}
+                  >
+                    <Typography
+                      fontWeight={600}
+                      fontSize={21}
+                      lineHeight={0.5}
+                      sx={{ overflowWrap: "break-word", pt: 2, color: "white" }}
+                    >
+                      {`You said`}
+                    </Typography>
+                  </Box>
                   <Typography
                     fontWeight={600}
                     fontSize={21}
                     lineHeight={0.5}
-                    sx={{ overflowWrap: "break-word", pt: 2, color: "white" }}
+                    sx={{
+                      overflowWrap: "break-word",
+                      pt: 2,
+                      pl: 1,
+                      mt: 1,
+                      color: "#55BA93",
+                    }}
                   >
-                    {`You said: ${uerResponse}`}
+                    {`${uerResponse}`}
                   </Typography>
                 </Box>
               </Box>
