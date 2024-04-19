@@ -67,7 +67,7 @@ export const stories: Story[] = [
 export const prePrompts = {
   story:
     "This is a interactive educational story generation with narration, questions to the reader[who are around 5-7 years old] and response from reader. It's a story of a little dumpling called Bao travelling around Asia, what would be a proper next context that are composed of interesting story line including the answer from user also it should finish with a question that reader can answer to proceed for the next plot, each narration and answer should not exceed 20 words each and the model generated text should be a storyline ending with a question, here are the context so far: ",
-  storyImage:
+  image:
     "This image will be used for children story book targeting 5-7 years old, It's a story of a little dumpling called Bao travelling around Asia image should be cute cartoonish and reflective of the latest situation of the story, image should not include any text or conversational material,image should be cute cartoonish cute and pastel toned,image should be ituitive and easily understandble of the context. here is the story so far:",
 };
 
