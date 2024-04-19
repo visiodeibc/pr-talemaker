@@ -35,7 +35,7 @@ export default function HomePage() {
           display: "flex",
           flexDirection: "row",
           backgroundImage: "background.paper",
-          minHeight: "60vh", // Change height to minHeight
+          minHeight: "60vh",
           alignItems: "center",
           justifyContent: "center",
           pt: 8,
@@ -90,7 +90,7 @@ export default function HomePage() {
         <ImageList
           cols={matchDownMd ? 1 : 3}
           gap={15}
-          sx={{ mx: matchDownMd ? 10 : 30, pb: 10 }}
+          sx={{ mx: matchDownMd ? 10 : 25, pb: 10 }}
         >
           {stories.map((item) => (
             <ImageListItem
