@@ -29,6 +29,7 @@ import { audioBlobToBase64 } from "@/util";
 import { stories, defaultPlot } from "@/data/data";
 import { Story } from "@/data/type";
 import theme from "@/components/ThemeRegistry/theme";
+import { Router } from "next/router";
 
 export default function StoryPage({ params }: { params: any }) {
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -164,6 +165,7 @@ export default function StoryPage({ params }: { params: any }) {
     if (currentAudio) {
       currentAudio.pause();
       currentAudio.currentTime = 0;
+      setCurrentAudio(null);
     }
   };
 
@@ -172,6 +174,9 @@ export default function StoryPage({ params }: { params: any }) {
     const res = await textToSpeech(newLine || currentLine);
     const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
     setCurrentAudio(audio);
+    audio.addEventListener("ended", function () {
+      stopAudio();
+    });
     audio.play();
   };
 
@@ -246,6 +251,25 @@ export default function StoryPage({ params }: { params: any }) {
             }}
           >
             <Box style={{ position: "relative" }}>
+              <Button
+                sx={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 1000,
+                  m: 2,
+                }}
+                onClick={() => playAudio()}
+              >
+                <Avatar
+                  src={
+                    currentAudio && !currentAudio?.paused
+                      ? "/buttons/sound_btn_off.png"
+                      : "/buttons/sound_btn_on.png"
+                  }
+                  sx={{ height: "66px", width: "66px" }}
+                />
+              </Button>
               <Box
                 sx={{
                   backgroundColor: "#FFBAC1",
@@ -294,34 +318,7 @@ export default function StoryPage({ params }: { params: any }) {
                 >
                   {currentLine}
                 </Typography>
-                <Button
-                  variant="contained"
-                  sx={{
-                    borderRadius: "14px",
-                    height: "40px",
-                    m: 1,
-                  }}
-                  color={"primary"}
-                  onClick={() => {
-                    playAudio();
-                  }}
-                >
-                  <PlayCircleIcon />
-                  {"Play"}
-                </Button>
-                <Button
-                  variant="contained"
-                  sx={{
-                    borderRadius: "14px",
-                    height: "40px",
-                    m: 1,
-                  }}
-                  color={"primary"}
-                  onClick={stopAudio}
-                >
-                  <StopCircleIcon />
-                  {"Stop"}
-                </Button>
+
                 <Typography
                   variant="h5"
                   fontWeight="bold"
