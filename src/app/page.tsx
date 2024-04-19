@@ -44,7 +44,7 @@ export default function HomePage() {
       >
         <Box
           sx={{
-            width: "65vw",
+            width: "70vw",
             display: "flex",
             textAlign: "center",
             justifyContent: "center",
