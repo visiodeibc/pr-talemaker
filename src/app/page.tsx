@@ -55,7 +55,16 @@ export default function HomePage() {
             fontStyle={"Montserrat"}
             fontWeight={600}
             fontSize={matchDownMd ? 40 : 80}
-            lineHeight={1}
+            lineHeight={1.1}
+            sx={{
+              backgroundcolor: "primary",
+              backgroundImage: `linear-gradient(45deg, #FF6D7F, #8500C3)`,
+              backgroundSize: "100%",
+              backgroundRepeat: "repeat",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
           >
             Where your imagination becomes a story
           </Typography>
@@ -63,7 +72,7 @@ export default function HomePage() {
             fontStyle={"Montserrat"}
             fontWeight={600}
             fontSize={25}
-            color={"#797979"}
+            color={"#393939"}
             marginTop={4}
           >
             Attention explorers! Let’s go on an Asia quest together. <br />
