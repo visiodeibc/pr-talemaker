@@ -34,8 +34,9 @@ export default function HomePage() {
         sx={{
           display: "flex",
           flexDirection: "row",
-          backgroundImage: "background.paper",
-          minHeight: "60vh",
+          backgroundImage: "url('/title_back.png')",
+          backgroundRepeat: "no-repeat",
+          minHeight: "70vh",
           alignItems: "center",
           justifyContent: "center",
           pt: 8,
