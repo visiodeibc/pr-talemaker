@@ -31,17 +31,12 @@ export default function HomePage() {
         sx={{
           display: "flex",
           backgroundColor: "background.default",
+          px: 2,
+          py: 1,
         }}
         elevation={0}
       >
-        <Box sx={{ py: 0.5 }}>
-          <Image
-            src={"/talemaker_logo.png"}
-            height={42}
-            width={206}
-            alt="logo"
-          />
-        </Box>
+        <Image src={"/talemaker_logo.png"} height={42} width={206} alt="logo" />
       </AppBar>
       <Box
         sx={{

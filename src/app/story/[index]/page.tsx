@@ -6,7 +6,19 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
-import { Button, CircularProgress, TextField, Typography } from "@mui/material";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import {
+  AppBar,
+  Button,
+  CircularProgress,
+  IconButton,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+import { useRouter } from "next/navigation";
+
+import Image from "next/image";
 
 import {
   generateImage,
@@ -17,8 +29,12 @@ import {
 import { audioBlobToBase64 } from "@/util";
 import { stories, defaultPlot } from "@/data/data";
 import { Story } from "@/data/type";
+import theme from "@/components/ThemeRegistry/theme";
 
 export default function StoryPage({ params }: { params: any }) {
+  const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
+  const router = useRouter();
+
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
     null
   );
@@ -174,6 +190,41 @@ export default function StoryPage({ params }: { params: any }) {
 
   return (
     <div>
+      <AppBar
+        position="relative"
+        sx={{
+          display: "flex",
+          backgroundColor: "background.default",
+        }}
+        elevation={0}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            px: 2,
+            py: 1,
+          }}
+        >
+          <IconButton
+            onClick={() => {
+              router.back();
+            }}
+          >
+            <ArrowBackIcon fontSize="large" color="info" />
+          </IconButton>
+          <Typography
+            fontStyle={"Montserrat"}
+            fontWeight={600}
+            fontSize={23}
+            lineHeight={2}
+          >
+            {story?.subtitle}
+          </Typography>
+          <Box></Box>
+        </Box>
+      </AppBar>
       <Box
         sx={{
           padding: "20px",
