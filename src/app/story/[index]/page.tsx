@@ -2,6 +2,7 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 import Box from "@mui/material/Box";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
@@ -13,13 +14,10 @@ import {
   Button,
   CircularProgress,
   IconButton,
-  TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
-
-import Image from "next/image";
 
 import {
   generateImage,
@@ -237,9 +235,8 @@ export default function StoryPage({ params }: { params: any }) {
       >
         <Box
           sx={{
-            padding: "20px",
             bgcolor: "background.default",
-            borderRadius: "12px",
+            borderRadius: 12,
             boxShadow: 2,
           }}
         >
@@ -249,33 +246,41 @@ export default function StoryPage({ params }: { params: any }) {
             }}
           >
             <Box style={{ position: "relative" }}>
-              <img
-                className="image-item"
-                src={currentImg}
-                alt={"current image"}
-                loading="lazy"
-                onLoad={() => {
-                  setImgLoading(false);
+              <Box
+                sx={{
+                  backgroundColor: "#FFBAC1",
+                  borderTopLeftRadius: 35,
+                  borderTopRightRadius: 35,
                 }}
-                style={{ borderRadius: 8, height: "40vh" }}
-              />
-              {imgLoading && (
-                <Box
-                  sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    width: "100%",
-                    height: "35vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    zIndex: 9999,
+              >
+                <img
+                  className="image-item"
+                  src={currentImg}
+                  alt={"current image"}
+                  loading="lazy"
+                  onLoad={() => {
+                    setImgLoading(false);
                   }}
-                >
-                  <CircularProgress color="secondary" />
-                </Box>
-              )}
+                  style={{ height: "40vh" }}
+                />
+                {imgLoading && (
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "35vh",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      zIndex: 9999,
+                    }}
+                  >
+                    <CircularProgress color="secondary" />
+                  </Box>
+                )}
+              </Box>
               <Box
                 sx={{
                   flexDirection: "column",
