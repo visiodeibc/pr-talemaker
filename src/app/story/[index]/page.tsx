@@ -302,11 +302,30 @@ export default function StoryPage({ params }: { params: any }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      backgroundColor: "rgba(255, 255, 255, 0.5)",
+                      borderTopLeftRadius: 35,
+                      borderTopRightRadius: 35,
+                      backgroundColor: "rgba(255, 255, 255, 0.7)",
                       zIndex: 9999,
                     }}
                   >
-                    <CircularProgress sx={{ color: "#A1A1A1" }} />
+                    <Box
+                      sx={{
+                        justifyContent: "center",
+                        alignItems: "center",
+                        borderRadius: 12,
+                        height: "95px",
+                        width: "95px",
+                        backgroundColor: "#A1A1A1",
+                      }}
+                    >
+                      <CircularProgress
+                        sx={{
+                          color: "#FFFFFF",
+                          height: 0,
+                          mt: "27px",
+                        }}
+                      />
+                    </Box>
                   </Box>
                 )}
               </Box>
