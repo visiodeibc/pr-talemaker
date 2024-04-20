@@ -2,11 +2,8 @@
 "use client";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 import Box from "@mui/material/Box";
-import PlayCircleIcon from "@mui/icons-material/PlayCircle";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import {
   AppBar,
@@ -50,7 +47,7 @@ export default function StoryPage({ params }: { params: any }) {
   const [currentImg, setCurrentImg] = useState<string>("");
   const [uerResponse, setUserResponse] = useState<string>("...");
 
-  const [imgLoading, setImgLoading] = useState<boolean>(false);
+  const [imgLoading, setImgLoading] = useState<boolean>(true);
   const [storyLoading, setStoryLoading] = useState<boolean>(false);
 
   const makeNextStory = async (
