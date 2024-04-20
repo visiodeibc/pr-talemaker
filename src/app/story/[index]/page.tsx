@@ -275,6 +275,7 @@ export default function StoryPage({ params }: { params: any }) {
                   backgroundColor: "#FFBAC1",
                   borderTopLeftRadius: 35,
                   borderTopRightRadius: 35,
+                  height: "40vh",
                 }}
               >
                 <img
@@ -284,7 +285,11 @@ export default function StoryPage({ params }: { params: any }) {
                   onLoad={() => {
                     setImgLoading(false);
                   }}
-                  style={{ height: "40vh" }}
+                  style={{
+                    objectFit: "cover",
+                    height: "100%",
+                    maxWidth: "100%",
+                  }}
                 />
                 {imgLoading && (
                   <Box
@@ -297,10 +302,11 @@ export default function StoryPage({ params }: { params: any }) {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      backgroundColor: "rgba(255, 255, 255, 0.5)",
                       zIndex: 9999,
                     }}
                   >
-                    <CircularProgress color="primary" />
+                    <CircularProgress sx={{ color: "#A1A1A1" }} />
                   </Box>
                 )}
               </Box>
