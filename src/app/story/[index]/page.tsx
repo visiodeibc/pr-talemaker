@@ -290,6 +290,8 @@ export default function StoryPage({ params }: { params: any }) {
                     objectFit: "cover",
                     height: "100%",
                     maxWidth: "100%",
+                    borderTopLeftRadius: matchDownMd ? 35 : 0,
+                    borderTopRightRadius: matchDownMd ? 35 : 0,
                   }}
                 />
                 {imgLoading && (
