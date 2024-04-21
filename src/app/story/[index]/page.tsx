@@ -281,6 +281,10 @@ export default function StoryPage({ params }: { params: any }) {
                   loading="lazy"
                   onLoad={() => {
                     setImgLoading(false);
+                    if (currentImg === story?.storyImage) {
+                      //for first image auto play
+                      playAudio();
+                    }
                   }}
                   style={{
                     objectFit: "cover",
@@ -330,12 +334,12 @@ export default function StoryPage({ params }: { params: any }) {
                 sx={{
                   flexDirection: "column",
                   py: 3,
-                  px: matchDownMd ? 10 : 15,
+                  px: matchDownMd ? 5 : 15,
                 }}
               >
                 <Typography
                   fontWeight={600}
-                  fontSize={26}
+                  fontSize={matchDownMd ? 18 : 26}
                   sx={{ overflowWrap: "break-word", textAlign: "left" }}
                 >
                   {currentLine}
@@ -359,7 +363,7 @@ export default function StoryPage({ params }: { params: any }) {
                   >
                     <Typography
                       fontWeight={600}
-                      fontSize={21}
+                      fontSize={matchDownMd ? 15 : 21}
                       lineHeight={0.5}
                       sx={{ overflowWrap: "break-word", pt: 2, color: "white" }}
                     >
@@ -368,7 +372,7 @@ export default function StoryPage({ params }: { params: any }) {
                   </Box>
                   <Typography
                     fontWeight={600}
-                    fontSize={21}
+                    fontSize={matchDownMd ? 15 : 21}
                     lineHeight={0.5}
                     sx={{
                       overflowWrap: "break-word",
