@@ -125,6 +125,7 @@ export default function StoryPage({ params }: { params: any }) {
 
   const handleRecord = async () => {
     if (!recording) {
+      stopAudio();
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
         console.log("getUserMedia not supported on your browser!");
         return;
