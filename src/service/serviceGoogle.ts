@@ -9,6 +9,7 @@ export async function transcribeSpeech(audioFile: any): Promise<any> {
         config: {
           encoding: "WEBM_OPUS",
           languageCode: "en-US",
+          sampleRateHertz: 8000,
           enableWordTimeOffsets: false,
         },
         audio: {
