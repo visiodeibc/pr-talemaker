@@ -38,8 +38,9 @@ Demo link: https://talemaker.vercel.app/
 12. [x] 버그 픽스
     1. [x] voice input 없는 경우 대응 가능하도록 수정
     2. [x] Img load 완료시 loading indicator 수정
-13. [ ] Fine tune voice reading parts
+13. [x] Fine tune voice reading parts
 14. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
 15. [ ] multi image/record saving
 16. [ ] google cloud storage에 이전 스토리 저장
 17. [ ] embed image in conversation for better context
+18. [ ] multi language support / learning

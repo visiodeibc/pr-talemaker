@@ -38,9 +38,12 @@ export async function textToSpeech(text: string): Promise<any> {
         voice: {
           languageCode: "en-US",
           ssmlGender: "FEMALE",
+          name: "en-US-Wavenet-F",
         },
         audioConfig: {
           audioEncoding: "LINEAR16",
+          speakingRate: 0.9,
+          pitch: 2.5,
         },
       }
     );
@@ -51,6 +54,7 @@ export async function textToSpeech(text: string): Promise<any> {
 }
 
 export async function generateImage(prompt: string): Promise<any> {
+  // https://platform.openai.com/docs/api-reference/images/createEdit
   const headers = {
     Authorization: `Bearer ${process.env.AI_KEY}`,
     "Content-Type": "application/json",
@@ -75,6 +79,7 @@ export async function generateImage(prompt: string): Promise<any> {
 }
 
 export async function generateStory(story: []): Promise<any> {
+  //https://ai.google.dev/tutorials/rest_quickstart#text-only_input
   try {
     const response = await axios.post(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${process.env.GCP_KEY}`,
@@ -89,6 +94,7 @@ export async function generateStory(story: []): Promise<any> {
 }
 
 // export async function generateImageG(prompt: string): Promise<any> {
+//  https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
 //   const headers = {
 //     Authorization: `Bearer c0be57716b80b6018c1ced95c1bed9b33b646d95`,
 //     "Content-Type": "application/json",
