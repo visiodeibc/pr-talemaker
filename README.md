@@ -26,24 +26,20 @@ Demo link: https://talemaker.vercel.app/
 
 1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
 2. [x] Hook up gemini for story progression
-   1. [x] restAPI - https://ai.google.dev/tutorials/rest_quickstart#text-only_input
-      1. [x] https://ai.google.dev/tutorials/rest_quickstart
-   2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
-      1. [x] ai - https://platform.openai.com/docs/api-reference/images/createEdit
-3. [ ] Put general desciption/purpose on the landing page
+3. [x] Put general desciption/purpose on the landing page
 4. [x] change logo
 5. [x] change title
 6. [x] change font
-7. [ ] multi image/record saving
-8. [ ] google cloud storage에 이전 스토리 저장
-9. [ ] embed image in conversation for better context
-10. [x] image lazy loading placeholder
-11. [x] put home button in the main page[stop audio if so]
-12. [ ] readme 작성
-13. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
-14. [x] safari 안되는 이슈
-15. [x] 모바일에서 확인은 될정도로..
-16. [x] 버그 픽스
+7. [x] image lazy loading placeholder
+8. [x] put home button in the main page[stop audio if so]
+9. [x] readme 작성
+10. [x] safari 안되는 이슈
+11. [x] 모바일에서 확인은 될정도로..
+12. [x] 버그 픽스
     1. [x] voice input 없는 경우 대응 가능하도록 수정
     2. [x] Img load 완료시 loading indicator 수정
-17. [ ] Fine tune voice reading parts
+13. [ ] Fine tune voice reading parts
+14. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
+15. [ ] multi image/record saving
+16. [ ] google cloud storage에 이전 스토리 저장
+17. [ ] embed image in conversation for better context
