@@ -1,3 +1,24 @@
+## Introduction
+
+This is project from team TB Neighbors, creating interactive story application that kids can explore their imagination.
+
+Demo link: https://talemaker.vercel.app/
+
+## Architecture
+
+## Used Technology
+
+### APIs
+
+- Google Genimi Pro
+- Google Speech
+- Google Text to Speech
+
+### Framework
+
+- Nextjs
+- FastaAPI
+
 ## TODO
 
 1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
@@ -7,25 +28,22 @@
    2. [ ] image gen - https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
       1. [x] ai - https://platform.openai.com/docs/api-reference/images/createEdit
 3. [ ] Put general desciption/purpose on the landing page
-4. [ ] change logo
-5. [ ] change title
-6. [ ] change font
+4. [x] change logo
+5. [x] change title
+6. [x] change font
 7. [ ] multi image/record saving
 8. [ ] google cloud storage에 이전 스토리 저장
 9. [ ] embed image in conversation for better context
 10. [x] image lazy loading placeholder
-11. [ ] put home button in the main page[stop audio if so]
+11. [x] put home button in the main page[stop audio if so]
 12. [ ] readme 작성
 13. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
-14. [ ] safari 안되는 이슈
-15. [ ] 모바일에서 확인은 될정도로..
-16. [ ] 버그 픽스
-    1. [ ] voice input 없는 경우 대응 가능하도록 수정
-    2. [ ] Img load 완료시 loading indicator 수정
-
-## Introduction
-
-This is a hybrid Next.js + Python app that uses Next.js as the frontend and FastAPI as the API backend. One great use case of this is to write Next.js apps that use Python AI libraries on the backend.
+14. [x] safari 안되는 이슈
+15. [x] 모바일에서 확인은 될정도로..
+16. [x] 버그 픽스
+    1. [x] voice input 없는 경우 대응 가능하도록 수정
+    2. [x] Img load 완료시 loading indicator 수정
+17. [ ] Fine tune voice reading parts
 
 ## How It Works
 
@@ -36,24 +54,6 @@ This is implemented using [`next.config.js` rewrites](https://github.com/digitro
 On localhost, the rewrite will be made to the `127.0.0.1:8000` port, which is where the FastAPI server is running.
 
 In production, the FastAPI server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
-
-## Demo
-
-https://nextjs-fastapi-starter.vercel.app/
-
-## Deploy Your Own
-
-You can clone & deploy it to Vercel with one click:
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdigitros%2Fnextjs-fastapi%2Ftree%2Fmain)
-
-## Developing Locally
-
-You can clone & create this repo with the following command
-
-```bash
-npx create-next-app nextjs-fastapi --example "https://github.com/digitros/nextjs-fastapi"
-```
 
 ## Getting Started
 
@@ -80,13 +80,3 @@ pnpm dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 The FastApi server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [FastAPI Documentation](https://fastapi.tiangolo.com/) - learn about FastAPI features and API.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
