@@ -4,10 +4,6 @@ This is project from team TB Neighbors, creating interactive story application t
 
 Demo link: https://talemaker.vercel.app/
 
-## Architecture
-![architecture](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/8ee32fc3-2026-4045-be5f-f0f8d3b5a6f1)
-![flow diagram](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/0eb6eb26-0528-49e9-a383-a7945a3e6a9b)
-
 ## Used Technology
 
 ### APIs
@@ -20,6 +16,11 @@ Demo link: https://talemaker.vercel.app/
 
 - Nextjs
 - FastaAPI
+
+## Architecture
+
+![architecture](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/8ee32fc3-2026-4045-be5f-f0f8d3b5a6f1)
+![flow diagram](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/0eb6eb26-0528-49e9-a383-a7945a3e6a9b)
 
 ## TODO
 
@@ -46,39 +47,3 @@ Demo link: https://talemaker.vercel.app/
     1. [x] voice input 없는 경우 대응 가능하도록 수정
     2. [x] Img load 완료시 loading indicator 수정
 17. [ ] Fine tune voice reading parts
-
-## How It Works
-
-The Python/FastAPI server is mapped into to Next.js app under `/api/`.
-
-This is implemented using [`next.config.js` rewrites](https://github.com/digitros/nextjs-fastapi/blob/main/next.config.js) to map any request to `/api/:path*` to the FastAPI API, which is hosted in the `/api` folder.
-
-On localhost, the rewrite will be made to the `127.0.0.1:8000` port, which is where the FastAPI server is running.
-
-In production, the FastAPI server is hosted as [Python serverless functions](https://vercel.com/docs/concepts/functions/serverless-functions/runtimes/python) on Vercel.
-
-## Getting Started
-
-First, install the dependencies:
-
-```bash
-npm install
-# or
-yarn
-# or
-pnpm install
-```
-
-Then, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-The FastApi server will be running on [http://127.0.0.1:8000](http://127.0.0.1:8000) – feel free to change the port in `package.json` (you'll also need to update it in `next.config.js`).
