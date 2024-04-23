@@ -5,6 +5,8 @@ This is project from team TB Neighbors, creating interactive story application t
 Demo link: https://talemaker.vercel.app/
 
 ## Architecture
+![architecture](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/8ee32fc3-2026-4045-be5f-f0f8d3b5a6f1)
+![flow diagram](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/0eb6eb26-0528-49e9-a383-a7945a3e6a9b)
 
 ## Used Technology
 
