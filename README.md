@@ -1,8 +1,9 @@
 ## Introduction
 
-This is project from team TB Neighbors, creating interactive story application that kids can explore their imagination.
+TB Neighbors project, creating interactive story application that kids can explore their imagination.
 
-Demo link: https://talemaker.vercel.app/
+- Part of Google [GenAI Hackathon](https://hack2skill.com/genai_hackathon_apac_edition)
+- Demo link: https://talemaker.vercel.app/
 
 ## Used Technology
 
@@ -10,7 +11,7 @@ Demo link: https://talemaker.vercel.app/
 
 - Google Genimi Pro
 - Google Speech
-- Google Text to Speech
+- Google Text-to-Speech
 
 ### Framework
 
@@ -24,24 +25,24 @@ Demo link: https://talemaker.vercel.app/
 
 ## TODO
 
-1. [x] Text to Speech - [https://cloud.google.com/text-to-speech/docs/reference/rest]
-2. [x] Hook up gemini for story progression
+1. [x] Apply Text to Speech
+2. [x] Apply Gemini Pro for story making
 3. [x] Put general desciption/purpose on the landing page
-4. [x] change logo
-5. [x] change title
-6. [x] change font
-7. [x] image lazy loading placeholder
-8. [x] put home button in the main page[stop audio if so]
-9. [x] readme 작성
-10. [x] safari 안되는 이슈
-11. [x] 모바일에서 확인은 될정도로..
-12. [x] 버그 픽스
-    1. [x] voice input 없는 경우 대응 가능하도록 수정
-    2. [x] Img load 완료시 loading indicator 수정
+4. [x] Change logo
+5. [x] Change title
+6. [x] Change font
+7. [x] Image lazy loading placeholder
+8. [x] Put home button in the main page[stop audio if so]
+9. [x] Update Readme
+10. [x] Safari issue fix
+11. [x] Responsive Design
+12. [x] Bug fix
+    1. [x] Handle no voice voice input
+    2. [x] Loading indicator for image
 13. [x] Fine tune voice reading parts
-14. [ ] error handling 추가하기[토스트]
-15. [ ] API 콜 보안 작성[key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
-16. [ ] multi image/record saving
-17. [ ] google cloud storage에 이전 스토리 저장
-18. [ ] embed image in conversation for better context
-19. [ ] multi language support / learning
+14. [ ] Error handling Toast
+15. [ ] API call for security [key 노출이 클라이언트 사이드에서 되는 현재 이슈 고쳐야해...]
+16. [ ] Multi image/record saving
+17. [ ] Google cloud storage
+18. [ ] Embed image in conversation for better context
+19. [ ] Multi language support / learning
