@@ -19,7 +19,7 @@ Demo link: https://talemaker.vercel.app/
 
 ## Architecture
 
-![architecture](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/8ee32fc3-2026-4045-be5f-f0f8d3b5a6f1)
+![architecture](https://github.com/visiodeibc/pr-talemaker/assets/35718406/2fab76fc-4198-41ce-87f6-2c1ba444230c)
 ![flow diagram](https://github.com/visiodeibc/pr-tb-neighbors/assets/35718406/0eb6eb26-0528-49e9-a383-a7945a3e6a9b)
 
 ## TODO
