@@ -96,7 +96,7 @@ export async function generateStory(story: []): Promise<any> {
 // export async function generateImageG(prompt: string): Promise<any> {
 //  https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/imagegeneration?hl=en&project=visiodeibc
 //   const headers = {
-//     Authorization: `Bearer c0be57716b80b6018c1ced95c1bed9b33b646d95`,
+//     Authorization: ``,
 //     "Content-Type": "application/json",
 //   };
 //   const data = {
