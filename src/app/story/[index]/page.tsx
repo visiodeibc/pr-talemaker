@@ -32,6 +32,7 @@ export default function StoryPage({ params }: { params: any }) {
   const matchDownMd = useMediaQuery(theme.breakpoints.down("md"));
   const router = useRouter();
 
+  const [audioPlaying, setAudioPlaying] = useState<boolean>(false);
   const [currentAudio, setCurrentAudio] = useState<HTMLAudioElement | null>(
     null
   );
@@ -74,7 +75,7 @@ export default function StoryPage({ params }: { params: any }) {
           },
         ],
       });
-      playAudio(updatedstory);
+      audioClick(updatedstory);
       setPlot(currentPlot);
       updateImage(currentPlot);
     } finally {
@@ -161,21 +162,27 @@ export default function StoryPage({ params }: { params: any }) {
 
   const stopAudio = () => {
     if (currentAudio) {
+      setAudioPlaying(false);
       currentAudio.pause();
       currentAudio.currentTime = 0;
       setCurrentAudio(null);
     }
   };
 
-  const playAudio = async (newLine = currentLine) => {
-    stopAudio();
-    const res = await textToSpeech(newLine || currentLine);
-    const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
-    setCurrentAudio(audio);
-    audio.addEventListener("ended", function () {
+  const audioClick = async (newLine = currentLine) => {
+    if (audioPlaying) {
       stopAudio();
-    });
-    audio.play();
+    } else {
+      setAudioPlaying(true);
+      stopAudio();
+      const res = await textToSpeech(newLine || currentLine);
+      const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
+      setCurrentAudio(audio);
+      audio.addEventListener("ended", function () {
+        stopAudio();
+      });
+      audio.play();
+    }
   };
 
   useEffect(() => {
@@ -257,7 +264,7 @@ export default function StoryPage({ params }: { params: any }) {
                   zIndex: 1000,
                   m: 2,
                 }}
-                onClick={() => playAudio()}
+                onClick={() => audioClick()}
               >
                 <Avatar
                   src={
@@ -284,7 +291,7 @@ export default function StoryPage({ params }: { params: any }) {
                     setImgLoading(false);
                     if (currentImg === story?.storyImage) {
                       //for first image auto play
-                      playAudio();
+                      audioClick();
                     }
                   }}
                   style={{
