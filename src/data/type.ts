@@ -7,4 +7,5 @@ export interface Story {
   storyImage: string;
   coverImage: string;
   firstLine: string;
+  demoImage?: string;
 }

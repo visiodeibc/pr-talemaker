@@ -46,7 +46,7 @@ export default function StoryPage({ params }: { params: any }) {
   const [story, setStory] = useState<Story | null>(null);
   const [currentLine, setCurrentLine] = useState<string>("");
   const [currentImg, setCurrentImg] = useState<string>("");
-  const [uerResponse, setUserResponse] = useState<string>("...");
+  const [userResponse, setUserResponse] = useState<string>("...");
 
   const [imgLoading, setImgLoading] = useState<boolean>(true);
   const [storyLoading, setStoryLoading] = useState<boolean>(false);
@@ -94,10 +94,13 @@ export default function StoryPage({ params }: { params: any }) {
         });
       }
     });
-
     try {
-      const response = await generateImage(aggregatedText);
-      setCurrentImg(response.data[0].url);
+      if (story?.demoImage) {
+        setCurrentImg(story.demoImage);
+      } else {
+        const response = await generateImage(aggregatedText);
+        setCurrentImg(response.data[0].url);
+      }
     } catch (e) {
       console.log(e);
     }
@@ -268,7 +271,7 @@ export default function StoryPage({ params }: { params: any }) {
               >
                 <Avatar
                   src={
-                    currentAudio && !currentAudio?.paused
+                    audioPlaying
                       ? "/buttons/sound_btn_off.png"
                       : "/buttons/sound_btn_on.png"
                   }
@@ -289,6 +292,7 @@ export default function StoryPage({ params }: { params: any }) {
                   loading="lazy"
                   onLoad={() => {
                     setImgLoading(false);
+                    // setUserResponse("...");
                     if (currentImg === story?.storyImage) {
                       //for first image auto play
                       audioClick();
@@ -392,7 +396,7 @@ export default function StoryPage({ params }: { params: any }) {
                       color: "#55BA93",
                     }}
                   >
-                    {`${uerResponse}`}
+                    {`${userResponse}`}
                   </Typography>
                 </Box>
               </Box>

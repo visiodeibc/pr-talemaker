@@ -61,6 +61,7 @@ export const stories: Story[] = [
     coverImage: "/cover/indonesia.png",
     firstLine:
       "Bao’s favorite animal is a dragon and when he heard about the last dragon in the world being in Indonesia, he swiftly jumped to his ship and set sail to Komodo Dragon Island. What do you think a Komodo dragon will look like?",
+    demoImage: "/story/indonesia-2.png",
   },
 ];
 
